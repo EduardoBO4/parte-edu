@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remedicy - Página Inicial</title>
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <style>
+        /* Estilos para os filtros e lembretes */
+        #filtros button {
+            margin-right: 10px;
+            padding: 8px 15px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 0.9em;
+        }
+
+        #filtros button:hover {
+            background-color: #e0e0e0;
+        }
+
+        #filtros button.active {
+            background-color: #007bff;
+            color: white;
+            border-color: #0056b3;
+        }
+
+        .lembrete {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .lembrete strong {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .lembrete em {
+            font-style: italic;
+            color: #666;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Novo estilo para o botão de suporte fixo */
+        .fixed-suporte-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000; /* Garante que fique acima de outros elementos */
+        }
+
+        .fixed-suporte-button .botao-link {
+            padding: 15px 25px;
+            font-size: 1.1em;
+            border-radius: 50px; /* Botão arredondado */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra para destacá-lo */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="img-logo">
+            <a href="/codigo/public/index.html">
+                <img src="/docs/images/logo.remed.jpg" alt="Logotipo da Remedicy" />
+            </a>
+            <h1 class="text-logo">Remedicy</h1>
+        </div>
+        <nav class="infos-mais">
+            <a class="botao-link" href="/codigo/public/login.html">Login/Inscrição</a>
+            <a class="botao-link" href="/codigo/public/about.html">Sobre nós</a>
+            <a class="botao-link" href="/codigo/public/ajuda.html">Suporte</a>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <section class="caixa-esquerda">
+            <h2>Notícias recentes</h2>
+            <p><strong>Olá, pessoa avaliadora! Se tiver dicas sobre o conteúdo dessa seção, por favor, envie na avaliação. Obrigado!</strong></p>
+            <p>
+                Perguntar ao Rommel sobre a cor, o calendário e o seu tamanho; como exibir resumo dos lembretes e calendário;
+                tornar a parte do Rapha responsiva; melhorar a responsividade do Henri; iniciar JS e APIs; decidir o conteúdo da aba central (chatbot assistente de saúde?), etc.
+            </p>
+            <p>
+                Cristiano de Avelar Marques Pires: Suporte/Ajra <br />
+                Davi Penna da Silva: Lista de remédios <br />
+                Eduardo Borges de Souza: Resumo de lembrete e API do notícias <br />
+                Henrique Cesar Silva Carvalho: Calendário <br />
+                Raphael Dantas de Castro: Criação de remédios
+            </p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, facilis...</p>
+        </section>
+
+        <section class="caixa-direita">
+            <h2>Gerenciar Lembretes</h2>
+            <a class="botao-link" href="/codigo/public/listaLembretes.html">Sua lista de lembretes</a>
+            <a class="botao-link" href="/codigo/public/criacaoRemedio.html">+ Criar mais um lembrete</a>
+
+            <div id="filtros" style="margin: 20px 0;">
+                <button type="button" data-filtro="todos" class="botao-link active">Todos</button>
+                <button type="button" data-filtro="passados" class="botao-link">Passados</button>
+                <button type="button" data-filtro="hoje" class="botao-link">Hoje</button>
+                <button type="button" data-filtro="amanha" class="botao-link">Amanhã</button>
+            </div>
+
+            <div id="lista-lembretes"></div>
+
+            <a class="botao-link" href="/codigo/public/calendario.html">Abrir calendário</a>
+            <div class="resumo-lembretes">
+                <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.css" rel="stylesheet" />
+                <div id="mini-calendar" style="margin-top: 20px;"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column footer-about">
+                <h4><i class="fa-solid fa-pills"></i> Remedicy</h4>
+                <p>Simplificando o gerenciamento da sua saúde. Lembretes, calendário e mais em um só lugar.</p>
+                <p>Projeto acadêmico da disciplina de Trabalho Interdisciplinar.</p>
+            </div>
+
+            <div class="footer-column footer-links-group">
+                <h4><i class="fa-solid fa-link"></i> Links Rápidos</h4>
+                <ul class="footer-links">
+                    <li><a href="/codigo/public/index.html">Página Inicial</a></li>
+                    <li><a href="/codigo/public/about.html">Sobre Nós</a></li>
+                    <li><a href="/codigo/public/listaLembretes.html">Meus Lembretes</a></li>
+                    <li><a href="/codigo/public/ajuda.html">Ajuda e FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column footer-team">
+                <h4><i class="fa-solid fa-users"></i> Equipe</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Cristiano Avelar</a></li>
+                    <li><a href="#">Davi Penna</a></li>
+                    <li><a href="#">Eduardo Borges</a></li>
+                    <li><a href="#">Henrique Cesar</a></li>
+                    <li><a href="#">Raphael Dantas</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column footer-contact">
+                <h4><i class="fa-solid fa-headset"></i> Contato</h4>
+                <ul class="footer-links">
+                    <li><i class="fa-solid fa-envelope"></i> suporte@remedicy.com.br</li>
+                    <li><i class="fa-solid fa-phone"></i> (31) 98887-9261</li>
+                    <li><i class="fa-solid fa-map-marker-alt"></i> Contagem, MG - Brasil</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Remedicy © 2025. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="fixed-suporte-button">
+        <a href="/codigo/public/ajuda.html" class="botao-link">
+            <i class="fa-solid fa-headset"></i> Suporte
+        </a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
+    <script src="./assets/js/miniCalendario.js"></script>
+
+    <script>
+        function formatarData(dataStr) {
+            if (!dataStr) return "-";
+            const partes = dataStr.split("-");
+            return partes.length === 3 ? `${partes[2]}/${partes[1]}/${partes[0]}` : dataStr;
+        }
+
+        function carregarLembretes() {
+            return JSON.parse(localStorage.getItem("lembretes")) || [];
+        }
+
+        function mostrarLembretes(lembretes) {
+            const container = document.getElementById("lista-lembretes");
+            container.innerHTML = lembretes.length === 0 ? "<p>Nenhum lembrete encontrado.</p>" : "";
+
+            lembretes.forEach(l => {
+                const div = document.createElement("div");
+                div.className = "lembrete";
+                div.innerHTML = `
+                    <strong>${l.nome}</strong> <br/>
+                    <em>Descrição:</em> ${l.descricao || "-"} <br/>
+                    <em>Como tomar:</em> ${l.comoTomar || "-"} <br/>
+                    <em>Dia da semana:</em> ${l.diaSemana || "-"} <br/>
+                    <em>Data:</em> ${formatarData(l.dataCalendario)} <br/>
+                    <em>Dias selecionados:</em> ${l.diasSelecionados || "-"}
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function dataLocal(dataStr) {
+            if (!dataStr) return null;
+            const [ano, mes, dia] = dataStr.split('-').map(Number); // "2025-06-14" → [2025, 6, 14]
+            return new Date(ano, mes - 1, dia); // mês 0-based
+        }
+
+        function atualizarBotaoAtivo(botaoSelecionado) {
+            document.querySelectorAll("#filtros button").forEach(b => b.classList.remove("active"));
+            botaoSelecionado.classList.add("active");
+        }
+
+        function filtrarLembretes(tipo, botao = null) {
+            const todos = carregarLembretes();
+            const hoje = dataLocal(moment().format('YYYY-MM-DD'));
+            const amanha = new Date(hoje);
+            amanha.setDate(hoje.getDate() + 1);
+
+            const filtrados = todos.filter(l => {
+                const dataLembrete = dataLocal(l.dataCalendario);
+                if (!dataLembrete) return false;
+                if (tipo === "passados") return dataLembrete < hoje;
+                if (tipo === "hoje") return dataLembrete.getTime() === hoje.getTime();
+                if (tipo === "amanha") return dataLembrete.getTime() === amanha.getTime();
+                return true;
+            });
+
+            if (botao) atualizarBotaoAtivo(botao);
+            mostrarLembretes(filtrados);
+        }
+
+        document.querySelectorAll("#filtros button").forEach(botao => {
+            botao.addEventListener("click", () => {
+                filtrarLembretes(botao.dataset.filtro, botao);
+            });
+        });
+
+        filtrarLembretes("todos");
+    </script>
+</body>
+</html>

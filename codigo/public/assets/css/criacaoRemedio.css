@@ -1,0 +1,167 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff; /* Fundo branco */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #3a0c0c;
+}
+
+header {
+  background-color: #b71c1c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  height: 80px; /* FIXA a altura */
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+header h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.user-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #f28b82;
+  border: 2px solid white;
+}
+
+/* Conteúdo principal */
+main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Formulário */
+.form-container {
+  width: 90%;
+  max-width: 900px;
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+/* Conteúdo em linha: esquerda e direita */
+.form-content {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* Lado esquerdo */
+.form-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 300px;
+}
+
+.form-left input {
+  padding: 10px;
+  border: 1px solid #e0b4b4;
+  background-color: #ffeaea;
+  color: #3a0c0c;
+  border-radius: 6px;
+  transition: border 0.2s ease;
+}
+
+.form-left input:focus {
+  border: 1px solid #b00020;
+  outline: none;
+}
+
+/* Lado direito */
+.form-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  min-width: 300px;
+}
+
+.placeholder-box {
+  width: 100%;
+  height: 150px;
+  background-color: #f8d7da;
+  border-radius: 6px;
+  border: 2px dashed #e57373;
+}
+
+/* Dias da semana */
+.dias-semana {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.dias-semana label {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #5e1a1a;
+}
+
+/* Rodapé do formulário */
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 10px;
+  border-top: 1px solid #e0b4b4;
+}
+
+.btn-voltar,
+.btn-salvar {
+  background-color: #b00020;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-voltar:hover,
+.btn-salvar:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.logo {
+  height: 120px;
+  width: auto;
+}
+
+

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Criação de Lembrete</title>
+  <link rel="stylesheet" href="./assets/css/criacaoRemedio.css">
+</head>
+<body>
+<header>
+  <div class="logo-container">
+    <a href="index.html">
+      <img src="./img/logo.remed.jpg" alt="Logo Remedicy" class="logo">
+    </a>
+    <h1>Criação Lembrete</h1>
+  </div>
+  <div class="user-icon"></div>
+</header>
+
+<main>
+  <form class="form-container" method="POST">
+    <div class="form-content">
+      <div class="form-left">
+        <input type="text" name="nome_remedio" placeholder="nome do remédio*" required>
+        <input type="text" name="descricao" placeholder="descrição">
+        <input type="text" name="como_tomar" placeholder="Como tomar">
+        <input type="text" name="dia_semana" placeholder="Dia da semana*" required>
+        <input type="date" id="data_calendario" placeholder="Escolha a data">
+      </div>
+
+      <div class="form-right">
+        <div class="placeholder-box"></div>
+        <div class="dias-semana">
+          <label><input type="checkbox" name="dias[]" value="D"> D</label>
+          <label><input type="checkbox" name="dias[]" value="S"> S</label>
+          <label><input type="checkbox" name="dias[]" value="T"> T</label>
+          <label><input type="checkbox" name="dias[]" value="Q1"> Q</label>
+          <label><input type="checkbox" name="dias[]" value="Q2"> Q</label>
+          <label><input type="checkbox" name="dias[]" value="S1"> S</label>
+          <label><input type="checkbox" name="dias[]" value="S2"> S</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <button type="button" class="btn-voltar" onclick="history.back()">Voltar</button>
+      <button type="submit" class="btn-salvar">Salvar</button>
+    </div>
+  </form>
+</main>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    if (!localStorage.getItem("lembreteEditando")) {
+      localStorage.removeItem("lembreteEditando");
+    }
+
+    const lembreteEditando = localStorage.getItem("lembreteEditando");
+    if (lembreteEditando !== null) {
+      const lembretes = JSON.parse(localStorage.getItem("lembretes")) || [];
+      const lembrete = lembretes[lembreteEditando];
+      if (lembrete) {
+        document.querySelector('[name="nome_remedio"]').value = lembrete.nome;
+        document.querySelector('[name="descricao"]').value = lembrete.descricao;
+        document.querySelector('[name="como_tomar"]').value = lembrete.comoTomar;
+        document.querySelector('[name="dia_semana"]').value = lembrete.diaSemana;
+
+        if (lembrete.dataCalendario) {
+          document.getElementById('data_calendario').value = lembrete.dataCalendario;
+        }
+
+        if (lembrete.diasSelecionados) {
+          const dias = lembrete.diasSelecionados.split(", ");
+          dias.forEach(valor => {
+            const checkbox = document.querySelector('[name="dias[]"][value="' + valor + '"]');
+            if (checkbox) checkbox.checked = true;
+          });
+        }
+      }
+    }
+  });
+
+  document.querySelector(".form-container").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const nome = document.querySelector('[name="nome_remedio"]').value.trim();
+    const descricao = document.querySelector('[name="descricao"]').value.trim();
+    const comoTomar = document.querySelector('[name="como_tomar"]').value.trim();
+    const diaSemana = document.querySelector('[name="dia_semana"]').value.trim();
+    const dataCalendario = document.getElementById('data_calendario').value;
+
+    if (!nome || !diaSemana || !dataCalendario) {
+      alert("Preencha os campos obrigatórios: nome do remédio, dia da semana e data.");
+      return;
+    }
+
+    const diasSelecionados = Array.from(document.querySelectorAll('[name="dias[]"]:checked'))
+      .map(input => input.value)
+      .join(", ");
+
+    const lembrete = {
+      nome,
+      descricao,
+      comoTomar,
+      diaSemana,
+      diasSelecionados,
+      dataCalendario
+    };
+
+    let lembretes = JSON.parse(localStorage.getItem("lembretes")) || [];
+    const editando = localStorage.getItem("lembreteEditando");
+
+    if (editando !== null) {
+      lembretes[editando] = lembrete;
+      localStorage.removeItem("lembreteEditando");
+    } else {
+      lembretes.push(lembrete);
+    }
+
+    localStorage.setItem("lembretes", JSON.stringify(lembretes));
+    window.location.href = "criacaoRemedioConcluida.html";
+  });
+
+  // Corrigido para não avançar o dia por conta do fuso
+  document.getElementById("data_calendario").addEventListener("change", function () {
+    const partesData = this.value.split("-");
+    const dataSelecionada = new Date(
+      partesData[0],
+      partesData[1] - 1,
+      partesData[2]
+    );
+
+    if (!isNaN(dataSelecionada)) {
+      const diasSemana = [
+        "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira",
+        "Quinta-feira", "Sexta-feira", "Sábado"
+      ];
+      const nomeDia = diasSemana[dataSelecionada.getDay()];
+      document.querySelector('[name="dia_semana"]').value = nomeDia;
+    }
+  });
+</script>
+</body>
+</html>

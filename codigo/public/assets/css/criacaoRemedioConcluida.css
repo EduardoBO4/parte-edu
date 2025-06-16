@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fdfdfd;
+}
+
+.header {
+  background-color: #b71c1c;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px; /* Altura fixa */
+  box-sizing: border-box;
+}
+
+.header img {
+  margin-right: 15px;
+}
+
+/* Classe para controlar o tamanho da logo sem afetar o header */
+.logo-pequena {
+  height: 100px;  /* Tamanho controlado */
+  width: auto;
+  max-height: 140%; /* Garante que nunca ultrapasse o header */
+  object-fit: contain;
+}
+
+.header h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px); /* Altura da tela menos o header fixo */
+}
+
+.box {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.box h2 {
+  color: #2e7d32;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: #b71c1c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #a41616;
+}
