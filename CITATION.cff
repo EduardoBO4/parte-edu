@@ -8,24 +8,34 @@ authors:
     given-names: Eduardo
   - family-names: Carvalho
     given-names: Henrique
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
+  - family-names: Pires
+    given-names: Cristiano 
+  - family-names: Silva
+    given-names: Davi
   - family-names: 
     given-names:
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Caetano
+    given-names: João
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Carneiro
+    given-names: Rommel
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Diniz
+    given-names: Luciana
+    
 keywords:
-  - 
-  - 
-repository-code: 
+  - Lembretes
+  - Remédios
+  - Idosos
+  - Saúde
+  - Cuidados
+  - Noticias
+  - Horários
+repository-code: https://github.com/ICEI-PUC-Minas-PMGCC-TI/atividade-01-grupo-lembretes-para-remedios
 license: CC-BY-4.0
 version: 1.0.0
 date-released: 2022-07-14
