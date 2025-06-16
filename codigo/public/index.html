@@ -87,20 +87,10 @@
 
     <main class="main-container">
         <section class="caixa-esquerda">
-            <h2>Notícias recentes</h2>
-            <p><strong>Olá, pessoa avaliadora! Se tiver dicas sobre o conteúdo dessa seção, por favor, envie na avaliação. Obrigado!</strong></p>
-            <p>
-                Perguntar ao Rommel sobre a cor, o calendário e o seu tamanho; como exibir resumo dos lembretes e calendário;
-                tornar a parte do Rapha responsiva; melhorar a responsividade do Henri; iniciar JS e APIs; decidir o conteúdo da aba central (chatbot assistente de saúde?), etc.
-            </p>
-            <p>
-                Cristiano de Avelar Marques Pires: Suporte/Ajra <br />
-                Davi Penna da Silva: Lista de remédios <br />
-                Eduardo Borges de Souza: Resumo de lembrete e API do notícias <br />
-                Henrique Cesar Silva Carvalho: Calendário <br />
-                Raphael Dantas de Castro: Criação de remédios
-            </p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, facilis...</p>
+            <h2>Notícias recentes sobre Saúde</h2>
+            <div id="noticias-container">
+                <!-- As notícias serão carregadas aqui via JavaScript -->
+            </div>
         </section>
 
         <section class="caixa-direita">
@@ -179,6 +169,7 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
     <script src="./assets/js/miniCalendario.js"></script>
+    <script src="./assets/js/noticias.js"></script>
 
     <script>
         function formatarData(dataStr) {

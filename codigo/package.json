@@ -1,15 +1,13 @@
 {
   "criacaoLembrete": [
     {
-    "nome": "dipirona",
-    "desc": "10ml",
-    "ingestao": "oral",
-    "data": "00-00-0000",
-    "dia": "S"
-  }
-  ]
-  ,
-
+      "nome": "dipirona",
+      "desc": "10ml",
+      "ingestao": "oral",
+      "data": "00-00-0000",
+      "dia": "S"
+    }
+  ],
   "homeScreen": {
     "resumo": {
       "passados": [
@@ -40,39 +38,36 @@
       "proximoDia": []
     }
   },
-
   "events": [
-[
-  {
-    "title": "Tomar Dipirona",
-    "start": "2025-06-01T08:00:00",
-    "end": "2025-06-01T08:15:00"
-  },
-  {
-    "title": "Vitamina D",
-    "start": "2025-06-01T12:00:00"
-  },
-  {
-    "title": "Antibiótico - Dose 1",
-    "start": "2025-06-01T08:00:00"
-  },
-  {
-    "title": "Antibiótico - Dose 2",
-    "start": "2025-06-01T20:00:00"
-  },
-  {
-    "title": "Repor Estoque - Remédio da pressão",
-    "start": "2025-06-05"
-  },
-  {
-    "title": "Consulta médica",
-    "start": "2025-06-07T09:30:00",
-    "end": "2025-06-07T10:00:00"
-  }
-]
-
+    [
+      {
+        "title": "Tomar Dipirona",
+        "start": "2025-06-01T08:00:00",
+        "end": "2025-06-01T08:15:00"
+      },
+      {
+        "title": "Vitamina D",
+        "start": "2025-06-01T12:00:00"
+      },
+      {
+        "title": "Antibiótico - Dose 1",
+        "start": "2025-06-01T08:00:00"
+      },
+      {
+        "title": "Antibiótico - Dose 2",
+        "start": "2025-06-01T20:00:00"
+      },
+      {
+        "title": "Repor Estoque - Remédio da pressão",
+        "start": "2025-06-05"
+      },
+      {
+        "title": "Consulta médica",
+        "start": "2025-06-07T09:30:00",
+        "end": "2025-06-07T10:00:00"
+      }
+    ]
   ],
-
   "formularioSuporte": {
     "campos": {
       "nome": "",
@@ -91,7 +86,6 @@
       }
     }
   },
-
   "remedios": [
     {
       "id": 1,
@@ -109,5 +103,8 @@
       "horario": "08:30",
       "status": "pendente"
     }
-  ]
+  ],
+  "dependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
 }
