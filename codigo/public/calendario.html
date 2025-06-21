@@ -12,101 +12,21 @@
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    .cabecalho {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #c62828;
-      padding: 10px 20px;
-    }
-
-    .img-logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .img-logo img {
-      height: 50px;
-      margin-right: 10px;
-    }
-
-    .text-logo {
-      color: white;
-      font-size: 24px;
-      margin: 0;
-    }
-
-    .container {
-      display: flex;
-      padding: 20px;
-    }
-
-    #calendar {
-      flex: 3;
-      max-width: 900px;
-    }
-
-    .filtros {
-      flex: 1;
-      margin-left: 30px;
-      background: #f5f5f5;
-      padding: 20px;
-      border-radius: 10px;
-      height: fit-content;
-    }
-
-    .filtros h3 {
-      margin-top: 0;
-    }
-
-    .filtros label {
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .filtros input[type="checkbox"] {
-      margin-right: 5px;
-    }
-
-    #resultadoBusca {
-      list-style: none;
-      padding-left: 0;
-      margin-top: 10px;
-      max-height: 120px;
-      overflow-y: auto;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background: white;
-    }
-
-    #resultadoBusca li {
-      padding: 5px 8px;
-      border-bottom: 1px solid #eee;
-      cursor: pointer;
-    }
-
-    #resultadoBusca li:hover {
-      background-color: #ddd;
-    }
-  </style>
 </head>
 <body>
-  <header>
-    <div class="cabecalho">
-      <div class="img-logo">
+ <header>
+    <div class="img-logo">
         <a href="/codigo/public/index.html">
-          <img src="/docs/images/logo.remed.jpg" alt="Logo do Site" />
+            <img src="/docs/images/logo.remed.jpg" alt="Logotipo da Remedicy" />
         </a>
         <h1 class="text-logo">Remedicy</h1>
-      </div>
     </div>
-  </header>
+    <nav class="infos-mais">
+        <a class="botao-link" href="/codigo/public/login.html">Login/Inscrição</a>
+        <a class="botao-link" href="/codigo/public/about.html">Sobre nós</a>
+        <a class="botao-link" href="/codigo/public/ajuda.html">Suporte</a>
+    </nav>
+</header>
 
   <h1 style="text-align: center;">Lembretes de Remédios</h1>
 
@@ -159,7 +79,7 @@
             start: lembrete.dataCalendario || "2025-01-01",
             descricao: lembrete.descricao,
             comoTomar: lembrete.comoTomar,
-            diaSemana: lembrete.diaSemana,
+            horario: lembrete.horario,
             diasSelecionados: lembrete.diasSelecionados
           }));
       }
@@ -183,7 +103,8 @@
             `💊 Remédio: ${event.title}\n` +
             `📃 Descrição: ${event.descricao || '—'}\n` +
             `💡 Como tomar: ${event.comoTomar || '—'}\n` +
-            `📆 Dia da semana: ${event.diaSemana || '—'}\n` +
+            `⏰ Horário: ${event.horario || '—'}\n` +
+            `📆 Data: ${moment(event.start).format('DD/MM/YYYY')}\n` +
             `📌 Dias selecionados: ${event.diasSelecionados || '—'}`
           );
         }
@@ -195,9 +116,8 @@
           $('#calendar').fullCalendar('prev'); // mês anterior
         } else if(event.key === 'ArrowRight') {
           $('#calendar').fullCalendar('next'); // próximo mês
-          }
+        }
       });
-
 
       // Atualiza eventos e lista de busca
       function atualizarFiltro() {
@@ -225,22 +145,20 @@
           l.nome.toLowerCase().includes(buscaTexto.toLowerCase())
         );
 
-        resultados.forEach(lembrete => {
+       resultados.forEach(lembrete => {
           const li = document.createElement('li');
 
           let dataFormatada = '—';
-          let diaSemanaFormatado = '—';
-
           if (lembrete.dataCalendario) {
             dataFormatada = moment(lembrete.dataCalendario).format('DD/MM/YYYY');
-            diaSemanaFormatado = moment(lembrete.dataCalendario).locale('pt-br').format('dddd');
-            // Deixa a primeira letra maiúscula
-            diaSemanaFormatado = diaSemanaFormatado.charAt(0).toUpperCase() + diaSemanaFormatado.slice(1);
           }
+
+          let horarioFormatado = lembrete.horario || '—';
 
           li.innerHTML = `
             <strong>💊 ${lembrete.nome}</strong><br>
-            🗓 <strong>Data:</strong> ${dataFormatada} — ${diaSemanaFormatado}
+            🗓 <strong>Data:</strong> ${dataFormatada} <br>
+            ⏰ <strong>Horário:</strong> ${horarioFormatado}
           `;
 
           li.addEventListener('click', () => {
@@ -248,16 +166,14 @@
               `💊 Remédio: ${lembrete.nome}\n` +
               `📃 Descrição: ${lembrete.descricao || '—'}\n` +
               `💡 Como tomar: ${lembrete.comoTomar || '—'}\n` +
-              `📆 Data: ${dataFormatada}\n` +
-              `📅 Dia da semana: ${diaSemanaFormatado}`
+              `⏰ Horário: ${horarioFormatado}\n` +
+              `📆 Data: ${dataFormatada}`
             );
           });
 
           lista.appendChild(li);
         });
       }
-
-
 
       // Escuta eventos nos checkboxes e input de busca
       document.getElementById('checkboxesFiltro').addEventListener('change', atualizarFiltro);
@@ -267,5 +183,49 @@
       atualizarResultadosBusca('', nomesUnicos());
     });
   </script>
+
+     <footer class="site-footer">
+            <div class="footer-container">
+                <div class="footer-column footer-about">
+                    <h4><i class="fa-solid fa-pills"></i> Remedicy</h4>
+                    <p>Simplificando o gerenciamento da sua saúde. Lembretes, calendário e mais em um só lugar.</p>
+                    <p>Projeto acadêmico da disciplina de Trabalho Interdisciplinar.</p>
+                </div>
+
+                <div class="footer-column footer-links-group">
+                    <h4><i class="fa-solid fa-link"></i> Links Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="/codigo/public/index.html">Página Inicial</a></li>
+                        <li><a href="/codigo/public/about.html">Sobre Nós</a></li>
+                        <li><a href="/codigo/public/listaLembretes.html">Meus Lembretes</a></li>
+                        <li><a href="/codigo/public/ajuda.html">Ajuda e FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column footer-team">
+                    <h4><i class="fa-solid fa-users"></i> Equipe</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Cristiano Avelar</a></li>
+                        <li><a href="#">Davi Penna</a></li>
+                        <li><a href="#">Eduardo Borges</a></li>
+                        <li><a href="#">Henrique Cesar</a></li>
+                        <li><a href="#">Raphael Dantas</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column footer-contact">
+                    <h4><i class="fa-solid fa-headset"></i> Contato</h4>
+                    <ul class="footer-links">
+                        <li><i class="fa-solid fa-envelope"></i> suporte@remedicy.com.br</li>
+                        <li><i class="fa-solid fa-phone"></i> (31) 98887-9261</li>
+                        <li><i class="fa-solid fa-map-marker-alt"></i> Contagem, MG - Brasil</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>Remedicy © 2025. Todos os direitos reservados.</p>
+            </div>
+        </footer>
 </body>
 </html>

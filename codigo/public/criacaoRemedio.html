@@ -2,19 +2,25 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Criação de Lembrete</title>
   <link rel="stylesheet" href="./assets/css/criacaoRemedio.css">
+
 </head>
 <body>
-<header>
-  <div class="logo-container">
-    <a href="index.html">
-      <img src="./img/logo.remed.jpg" alt="Logo Remedicy" class="logo">
-    </a>
-    <h1>Criação Lembrete</h1>
-  </div>
-  <div class="user-icon"></div>
-</header>
+   <header>
+        <div class="img-logo">
+            <a href="/codigo/public/index.html">
+                <img src="/docs/images/logo.remed.jpg" alt="Logotipo da Remedicy" />
+            </a>
+            <h1 class="text-logo">Remedicy</h1>
+        </div>
+        <nav class="infos-mais">
+            <a class="botao-link" href="/codigo/public/login.html">Login/Inscrição</a>
+            <a class="botao-link" href="/codigo/public/about.html">Sobre nós</a>
+            <a class="botao-link" href="/codigo/public/ajuda.html">Suporte</a>
+        </nav>
+    </header>
 
 <main>
   <form class="form-container" method="POST">
@@ -23,20 +29,27 @@
         <input type="text" name="nome_remedio" placeholder="nome do remédio*" required>
         <input type="text" name="descricao" placeholder="descrição">
         <input type="text" name="como_tomar" placeholder="Como tomar">
-        <input type="text" name="dia_semana" placeholder="Dia da semana*" required>
+        <input type="time" name="horario" placeholder="Horário*" required>
         <input type="date" id="data_calendario" placeholder="Escolha a data">
       </div>
 
       <div class="form-right">
-        <div class="placeholder-box"></div>
-        <div class="dias-semana">
-          <label><input type="checkbox" name="dias[]" value="D"> D</label>
-          <label><input type="checkbox" name="dias[]" value="S"> S</label>
-          <label><input type="checkbox" name="dias[]" value="T"> T</label>
-          <label><input type="checkbox" name="dias[]" value="Q1"> Q</label>
-          <label><input type="checkbox" name="dias[]" value="Q2"> Q</label>
-          <label><input type="checkbox" name="dias[]" value="S1"> S</label>
-          <label><input type="checkbox" name="dias[]" value="S2"> S</label>
+        <div id="calendario-container">
+          <div id="calendario-header">
+            <button type="button" id="mes-anterior">&lt;</button>
+            <span id="mes-ano"></span>
+            <button type="button" id="mes-posterior">&gt;</button>
+          </div>
+          <div id="dias-semana">
+            <div>D</div>
+            <div>S</div>
+            <div>T</div>
+            <div>Q</div>
+            <div>Q</div>
+            <div>S</div>
+            <div>S</div>
+          </div>
+          <div id="dias-calendario"></div>
         </div>
       </div>
     </div>
@@ -49,12 +62,9 @@
 </main>
 
 <script>
-  window.addEventListener("DOMContentLoaded", () => {
-    if (!localStorage.getItem("lembreteEditando")) {
-      localStorage.removeItem("lembreteEditando");
-    }
-
+  document.addEventListener("DOMContentLoaded", () => {
     const lembreteEditando = localStorage.getItem("lembreteEditando");
+
     if (lembreteEditando !== null) {
       const lembretes = JSON.parse(localStorage.getItem("lembretes")) || [];
       const lembrete = lembretes[lembreteEditando];
@@ -62,20 +72,16 @@
         document.querySelector('[name="nome_remedio"]').value = lembrete.nome;
         document.querySelector('[name="descricao"]').value = lembrete.descricao;
         document.querySelector('[name="como_tomar"]').value = lembrete.comoTomar;
-        document.querySelector('[name="dia_semana"]').value = lembrete.diaSemana;
-
-        if (lembrete.dataCalendario) {
-          document.getElementById('data_calendario').value = lembrete.dataCalendario;
-        }
-
-        if (lembrete.diasSelecionados) {
-          const dias = lembrete.diasSelecionados.split(", ");
-          dias.forEach(valor => {
-            const checkbox = document.querySelector('[name="dias[]"][value="' + valor + '"]');
-            if (checkbox) checkbox.checked = true;
-          });
-        }
+        document.querySelector('[name="horario"]').value = lembrete.horario;
+        document.getElementById('data_calendario').value = lembrete.dataCalendario || "";
       }
+    } else {
+      // Campos vazios para novo lembrete
+      document.querySelector('[name="nome_remedio"]').value = "";
+      document.querySelector('[name="descricao"]').value = "";
+      document.querySelector('[name="como_tomar"]').value = "";
+      document.querySelector('[name="horario"]').value = "";
+      document.getElementById('data_calendario').value = "";
     }
   });
 
@@ -85,24 +91,20 @@
     const nome = document.querySelector('[name="nome_remedio"]').value.trim();
     const descricao = document.querySelector('[name="descricao"]').value.trim();
     const comoTomar = document.querySelector('[name="como_tomar"]').value.trim();
-    const diaSemana = document.querySelector('[name="dia_semana"]').value.trim();
+    const horario = document.querySelector('[name="horario"]').value.trim();
     const dataCalendario = document.getElementById('data_calendario').value;
 
-    if (!nome || !diaSemana || !dataCalendario) {
-      alert("Preencha os campos obrigatórios: nome do remédio, dia da semana e data.");
+    if (!nome || !horario || !dataCalendario) {
+      alert("Preencha os campos obrigatórios: nome do remédio, horário e data.");
       return;
     }
-
-    const diasSelecionados = Array.from(document.querySelectorAll('[name="dias[]"]:checked'))
-      .map(input => input.value)
-      .join(", ");
 
     const lembrete = {
       nome,
       descricao,
       comoTomar,
-      diaSemana,
-      diasSelecionados,
+      horario,
+      diasSelecionados: "",
       dataCalendario
     };
 
@@ -117,27 +119,103 @@
     }
 
     localStorage.setItem("lembretes", JSON.stringify(lembretes));
-    window.location.href = "criacaoRemedioConcluida.html";
+    window.location.href = "listaLembretes.html";
   });
 
-  // Corrigido para não avançar o dia por conta do fuso
-  document.getElementById("data_calendario").addEventListener("change", function () {
-    const partesData = this.value.split("-");
-    const dataSelecionada = new Date(
-      partesData[0],
-      partesData[1] - 1,
-      partesData[2]
-    );
+  // Calendário
+  const dataInput = document.getElementById("data_calendario");
+  const mesAno = document.getElementById("mes-ano");
+  const diasCalendario = document.getElementById("dias-calendario");
+  const btnAnterior = document.getElementById("mes-anterior");
+  const btnPosterior = document.getElementById("mes-posterior");
 
-    if (!isNaN(dataSelecionada)) {
-      const diasSemana = [
-        "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira",
-        "Quinta-feira", "Sexta-feira", "Sábado"
-      ];
-      const nomeDia = diasSemana[dataSelecionada.getDay()];
-      document.querySelector('[name="dia_semana"]').value = nomeDia;
+  let dataAtual = new Date();
+
+  function renderizarCalendario(data) {
+    const ano = data.getFullYear();
+    const mes = data.getMonth();
+    const primeiroDia = new Date(ano, mes, 1).getDay();
+    const ultimoDia = new Date(ano, mes + 1, 0).getDate();
+
+    mesAno.textContent = data.toLocaleString("pt-BR", {
+      month: "long",
+      year: "numeric"
+    });
+
+    diasCalendario.innerHTML = "";
+
+    for (let i = 0; i < primeiroDia; i++) {
+      diasCalendario.innerHTML += `<div class="vazio"></div>`;
     }
+
+    for (let dia = 1; dia <= ultimoDia; dia++) {
+      const dataCompleta = new Date(ano, mes, dia);
+      const dataFormatada = dataCompleta.toISOString().split("T")[0];
+      diasCalendario.innerHTML += `<div class="dia" data-data="${dataFormatada}">${dia}</div>`;
+    }
+
+    document.querySelectorAll(".dia").forEach((el) => {
+      el.addEventListener("click", () => {
+        const dataSelecionada = el.getAttribute("data-data");
+        dataInput.value = dataSelecionada;
+      });
+    });
+  }
+
+  btnAnterior.addEventListener("click", () => {
+    dataAtual.setMonth(dataAtual.getMonth() - 1);
+    renderizarCalendario(dataAtual);
   });
+
+  btnPosterior.addEventListener("click", () => {
+    dataAtual.setMonth(dataAtual.getMonth() + 1);
+    renderizarCalendario(dataAtual);
+  });
+
+  renderizarCalendario(dataAtual);
 </script>
+     <footer class="site-footer">
+            <div class="footer-container">
+                <div class="footer-column footer-about">
+                    <h4><i class="fa-solid fa-pills"></i> Remedicy</h4>
+                    <p>Simplificando o gerenciamento da sua saúde. Lembretes, calendário e mais em um só lugar.</p>
+                    <p>Projeto acadêmico da disciplina de Trabalho Interdisciplinar.</p>
+                </div>
+
+                <div class="footer-column footer-links-group">
+                    <h4><i class="fa-solid fa-link"></i> Links Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="/codigo/public/index.html">Página Inicial</a></li>
+                        <li><a href="/codigo/public/about.html">Sobre Nós</a></li>
+                        <li><a href="/codigo/public/listaLembretes.html">Meus Lembretes</a></li>
+                        <li><a href="/codigo/public/ajuda.html">Ajuda e FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column footer-team">
+                    <h4><i class="fa-solid fa-users"></i> Equipe</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Cristiano Avelar</a></li>
+                        <li><a href="#">Davi Penna</a></li>
+                        <li><a href="#">Eduardo Borges</a></li>
+                        <li><a href="#">Henrique Cesar</a></li>
+                        <li><a href="#">Raphael Dantas</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column footer-contact">
+                    <h4><i class="fa-solid fa-headset"></i> Contato</h4>
+                    <ul class="footer-links">
+                        <li><i class="fa-solid fa-envelope"></i> suporte@remedicy.com.br</li>
+                        <li><i class="fa-solid fa-phone"></i> (31) 98887-9261</li>
+                        <li><i class="fa-solid fa-map-marker-alt"></i> Contagem, MG - Brasil</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>Remedicy © 2025. Todos os direitos reservados.</p>
+            </div>
+        </footer>
 </body>
 </html>

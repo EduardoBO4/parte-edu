@@ -1,4 +1,3 @@
-
 // API de Notícias de Saúde
 class NoticiasAPI {
     constructor() {
@@ -8,9 +7,9 @@ class NoticiasAPI {
 
     async buscarNoticiasSaude() {
         try {
-            // Configuração para buscar notícias de saúde
+            // Configuração para buscar notícias de saúde específicas em português
             const params = new URLSearchParams({
-                q: 'saúde OR medicina OR tratamento OR remédio OR medicamento',
+                q: 'remédios OR "vida saudável" OR médicos OR "tecnologia na saúde" OR medicina OR "novos tratamentos" OR "saúde e qualidade de vida" OR farmácia OR medicamentos OR "tratamento médico" OR "inovação médica" OR "dispositivos médicos" OR telemedicina',
                 language: 'pt',
                 sortBy: 'publishedAt',
                 pageSize: 6,
@@ -35,23 +34,23 @@ class NoticiasAPI {
         // Notícias padrão caso a API falhe
         return [
             {
-                title: "Importância da Adesão ao Tratamento Medicamentoso",
-                description: "Estudos mostram que seguir corretamente o tratamento com medicamentos é fundamental para a recuperação.",
-                urlToImage: "https://via.placeholder.com/300x200?text=Saúde",
+                title: "Inovações Tecnológicas Revolucionam o Controle de Medicamentos",
+                description: "Novos aplicativos e dispositivos inteligentes ajudam pacientes a manterem a rotina de remédios em dia, melhorando significativamente a adesão ao tratamento.",
+                urlToImage: "https://via.placeholder.com/300x200?text=Tecnologia+Saúde",
                 url: "#",
                 publishedAt: new Date().toISOString()
             },
             {
-                title: "Dicas para Não Esquecer de Tomar Remédios",
-                description: "Especialistas recomendam o uso de lembretes e aplicativos para manter a rotina de medicamentos.",
-                urlToImage: "https://via.placeholder.com/300x200?text=Medicamentos",
+                title: "Médicos Destacam Importância da Vida Saudável na Prevenção",
+                description: "Especialistas enfatizam que hábitos saudáveis, aliados ao uso correto de medicamentos, são fundamentais para a qualidade de vida.",
+                urlToImage: "https://via.placeholder.com/300x200?text=Vida+Saudável",
                 url: "#",
                 publishedAt: new Date().toISOString()
             },
             {
-                title: "Cuidados com Medicamentos para Idosos",
-                description: "Orientações importantes sobre como gerenciar múltiplos medicamentos na terceira idade.",
-                urlToImage: "https://via.placeholder.com/300x200?text=Idosos",
+                title: "Novos Tratamentos Promissores para Doenças Crônicas",
+                description: "Pesquisas recentes mostram avanços significativos no desenvolvimento de terapias inovadoras para melhorar a saúde e qualidade de vida.",
+                urlToImage: "https://via.placeholder.com/300x200?text=Novos+Tratamentos",
                 url: "#",
                 publishedAt: new Date().toISOString()
             }

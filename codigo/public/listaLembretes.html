@@ -1,85 +1,167 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Remédios</title>
-    <link rel="stylesheet" href="/codigo/public/assets/css/listaLembrete.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meus Remédios</title>
+  <link rel="stylesheet" href="/codigo/public/assets/css/listaLembrete.css" />
 </head>
 <body>
-    <header class="header">
-        <a href="/codigo/public/index.html" class="header-back-button">
-            <i class="fas fa-arrow-left"></i> Voltar
-        </a>
-    </header>
+  <header>
+    <div class="img-logo">
+      <a href="/codigo/public/index.html">
+        <img src="/docs/images/logo.remed.jpg" alt="Logotipo da Remedicy" />
+      </a>
+      <h1 class="text-logo">Remedicy</h1>
+    </div>
+    <nav class="infos-mais">
+      <a class="botao-link" href="/codigo/public/login.html">Login/Inscrição</a>
+      <a class="botao-link" href="/codigo/public/about.html">Sobre nós</a>
+      <a class="botao-link" href="/codigo/public/ajuda.html">Suporte</a>
+    </nav>
+  </header>
 
-    <main class="main-content">
-        <h1 class="page-title">MEUS REMÉDIOS</h1>
+  <div class="main-content">
+    <h1 class="page-title">Meus Remédios</h1>
+    <a href="criacaoRemedio.html" class="take-medicine-button" style="margin-bottom: 20px; display: inline-block;" onclick="localStorage.removeItem('lembreteEditando')">Criar Novo</a>
 
-        <section id="medicine-list" class="medicine-list">
-            <div class="medicine-item" data-remedio-id="1">
-                <div class="medicine-details">
-                    <h2 class="medicine-name">Remédio para Dor de Cabeça</h2>
-                    <p class="medicine-dosage">500mg - A cada 8 horas</p>
-                    <p class="medicine-schedule">Todos os dias às 10:00</p>
-                </div>
-                <button class="take-medicine-button">TOMAR</button>
+    <div class="medicine-list" id="lista-remedios"></div>
+
+    <h2 id="titulo-tomados" style="display: none; margin-top: 40px;">Já Tomados</h2>
+    <div class="medicine-list" id="lista-tomados"></div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const listaRemedios = document.getElementById("lista-remedios");
+      const listaTomados = document.getElementById("lista-tomados");
+      const tituloTomados = document.getElementById("titulo-tomados");
+
+      let lembretes = JSON.parse(localStorage.getItem("lembretes")) || [];
+      let tomados = JSON.parse(localStorage.getItem("lembretesTomados")) || [];
+
+      function renderizarLista() {
+        listaRemedios.innerHTML = "";
+        lembretes.forEach((lembrete, index) => {
+          const item = document.createElement("div");
+          item.className = "medicine-item";
+          item.dataset.remedioId = index;
+
+          item.innerHTML = `
+            <div class="medicine-details">
+              <div class="medicine-name">${lembrete.nome}</div>
+              <div class="medicine-dosage">${lembrete.descricao || "Sem descrição"}</div>
+              <div class="medicine-schedule">Tomar: ${lembrete.comoTomar || "sem instrução"} às ${lembrete.horario} - Data: ${lembrete.dataCalendario}</div>
             </div>
+            <button class="take-medicine-button" data-acao="tomar">Tomar</button>
+            <button class="take-medicine-button" style="background-color: #888;" onclick="editar(${index})">Editar</button>
+            <button class="take-medicine-button" style="background-color: #555;" onclick="remover(${index})">Remover</button>
+          `;
 
-            <div class="medicine-item" data-remedio-id="2">
-                <div class="medicine-details">
-                    <h2 class="medicine-name">Vitamina C</h2>
-                    <p class="medicine-dosage">1g - Uma vez ao dia</p>
-                    <p class="medicine-schedule">Todos os dias às 08:30</p>
-                </div>
-                <button class="take-medicine-button">TOMAR</button>
-            </div>
-            
-            <div class="medicine-item" data-remedio-id="3">
-                <div class="medicine-details">
-                    <h2 class="medicine-name">Suplemento de Ferro</h2>
-                    <p class="medicine-dosage">30mg - Uma vez ao dia</p>
-                    <p class="medicine-schedule">Todos os dias às 09:00</p>
-                </div>
-                <button class="take-medicine-button">TOMAR</button>
-            </div>
-        </section>
-    </main>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const medicineList = document.getElementById('medicine-list');
-
-            if (medicineList) {
-                medicineList.addEventListener('click', (event) => {
-                    const target = event.target;
-                    const medicineItem = target.closest('.medicine-item');
-
-                    if (medicineItem && target.classList.contains('take-medicine-button')) {
-                        handleTakeMedicine(medicineItem.dataset.remedioId, medicineItem);
-                    }
-                });
-            }
-
-            function handleTakeMedicine(id, itemElement) {
-                console.log(`Remédio ID: ${id} tomado!`);
-                itemElement.classList.add('taken'); 
-
-                setTimeout(() => {
-                    itemElement.style.opacity = '0';
-                    itemElement.style.transform = 'translateY(-20px) scale(0.95)';
-                    itemElement.style.height = '0';
-                    itemElement.style.padding = '0';
-                    itemElement.style.marginBottom = '0';
-                    itemElement.style.overflow = 'hidden';
-                }, 300);
-
-                setTimeout(() => {
-                    itemElement.remove();
-                }, 800); 
-            }
+          listaRemedios.appendChild(item);
         });
-    </script>
+      }
+
+      function renderizarTomados() {
+        listaTomados.innerHTML = "";
+        if (tomados.length === 0) {
+          tituloTomados.style.display = "none";
+          return;
+        }
+
+        tituloTomados.style.display = "block";
+
+        tomados.forEach((lembrete) => {
+          const item = document.createElement("div");
+          item.className = "medicine-item taken";
+
+          item.innerHTML = `
+            <div class="medicine-details">
+              <div class="medicine-name">${lembrete.nome}</div>
+              <div class="medicine-dosage">${lembrete.descricao || "Sem descrição"}</div>
+              <div class="medicine-schedule">Tomado: ${lembrete.comoTomar || "sem instrução"} às ${lembrete.horario} - Data: ${lembrete.dataCalendario}</div>
+            </div>
+          `;
+
+          listaTomados.appendChild(item);
+        });
+      }
+
+      listaRemedios.addEventListener("click", function (event) {
+        const target = event.target;
+        const remedioItem = target.closest(".medicine-item");
+        const id = remedioItem?.dataset?.remedioId;
+
+        if (target.dataset.acao === "tomar" && id !== undefined) {
+          const lembreteTomado = lembretes.splice(id, 1)[0];
+          tomados.push(lembreteTomado);
+          localStorage.setItem("lembretes", JSON.stringify(lembretes));
+          localStorage.setItem("lembretesTomados", JSON.stringify(tomados));
+          renderizarLista();
+          renderizarTomados();
+        }
+      });
+
+      window.editar = function (index) {
+        localStorage.setItem("lembreteEditando", index);
+        window.location.href = "criacaoRemedio.html";
+      }
+
+      window.remover = function (index) {
+        if (confirm("Deseja remover este lembrete?")) {
+          lembretes.splice(index, 1);
+          localStorage.setItem("lembretes", JSON.stringify(lembretes));
+          renderizarLista();
+        }
+      }
+
+      renderizarLista();
+      renderizarTomados();
+    });
+  </script>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-column footer-about">
+        <h4><i class="fa-solid fa-pills"></i> Remedicy</h4>
+        <p>Simplificando o gerenciamento da sua saúde. Lembretes, calendário e mais em um só lugar.</p>
+        <p>Projeto acadêmico da disciplina de Trabalho Interdisciplinar.</p>
+      </div>
+
+      <div class="footer-column footer-links-group">
+        <h4><i class="fa-solid fa-link"></i> Links Rápidos</h4>
+        <ul class="footer-links">
+          <li><a href="/codigo/public/index.html">Página Inicial</a></li>
+          <li><a href="/codigo/public/about.html">Sobre Nós</a></li>
+          <li><a href="/codigo/public/listaLembretes.html">Meus Lembretes</a></li>
+          <li><a href="/codigo/public/ajuda.html">Ajuda e FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column footer-team">
+        <h4><i class="fa-solid fa-users"></i> Equipe</h4>
+        <ul class="footer-links">
+          <li><a href="#">Cristiano Avelar</a></li>
+          <li><a href="#">Davi Penna</a></li>
+          <li><a href="#">Eduardo Borges</a></li>
+          <li><a href="#">Henrique Cesar</a></li>
+          <li><a href="#">Raphael Dantas</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column footer-contact">
+        <h4><i class="fa-solid fa-headset"></i> Contato</h4>
+        <ul class="footer-links">
+          <li><i class="fa-solid fa-envelope"></i> suporte@remedicy.com.br</li>
+          <li><i class="fa-solid fa-phone"></i> (31) 98887-9261</li>
+          <li><i class="fa-solid fa-map-marker-alt"></i> Contagem, MG - Brasil</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>Remedicy © 2025. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 </body>
 </html>

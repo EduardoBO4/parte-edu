@@ -166,10 +166,10 @@ Relação de ferramentas empregadas pelo grupo durante o projeto.
 
 | Ambiente                    | Plataforma | Link de acesso                                     |
 | --------------------------- | ---------- | -------------------------------------------------- |
-| Processo de Design Thinking | Miro       | https://miro.com/XXXXXXX ⚠️ EXEMPLO ⚠️        |
-| Repositório de código     | GitHub     | https://github.com/XXXXXXX ⚠️ EXEMPLO ⚠️      |
-| Hospedagem do site          | Render     | https://site.render.com/XXXXXXX ⚠️ EXEMPLO ⚠️ |
-| Protótipo Interativo       | MarvelApp  | https://marvelapp.com/XXXXXXX ⚠️ EXEMPLO ⚠️   |
+| Processo de Design Thinking | Miro       | https://miro.com/XXXXXXX ⚠️ EXEMPLO ⚠️            |
+| Repositório de código       | GitHub     | https://github.com/XXXXXXX ⚠️ EXEMPLO ⚠️            |
+| Hospedagem do site          | Render     | https://site.render.com/XXXXXXX ⚠️ EXEMPLO ⚠️     |
+| Protótipo Interativo        | MarvelApp  | https://marvelapp.com/XXXXXXX ⚠️ EXEMPLO ⚠️        |
 |                             |            |                                                    |
 
 > ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
@@ -180,21 +180,17 @@ Relação de ferramentas empregadas pelo grupo durante o projeto.
 
 Divisão de papéis no grupo e apresentação da estrutura da ferramenta de controle de tarefas (Kanban).
 
-![Exemplo de Kanban](images/exemplo-kanban.png)
+![Exemplo de Kanban](/docs/images/exemplo-kanban.png)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nesta parte do documento, você deve apresentar  o processo de trabalho baseado nas metodologias ágeis, a divisão de papéis e tarefas, as ferramentas empregadas e como foi realizada a gestão de configuração do projeto via GitHub.
->
-> Coloque detalhes sobre o processo de Design Thinking e a implementação do Framework Scrum seguido pelo grupo. O grupo poderá fazer uso de ferramentas on-line para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
->
-> **Orientações**:
->
-> - [Sobre Projects - GitHub Docs](https://docs.github.com/pt/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
-> - [Gestão de projetos com GitHub | balta.io](https://balta.io/blog/gestao-de-projetos-com-github)
-> - [(460) GitHub Projects - YouTube](https://www.youtube.com/playlist?list=PLiO7XHcmTsldZR93nkTFmmWbCEVF_8F5H)
-> - [11 Passos Essenciais para Implantar Scrum no seu Projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
+Nossa organização foi guiada, principalmente, por dois meios: o WhatsApp e o Kanban. Utilizávamos o Kanban como uma ferramenta visual para acompanhar o andamento das atividades que precisavam ser realizadas, permitindo que todos tivessem uma visão geral do progresso do projeto.
+
+No entanto, raramente utilizávamos a coluna “Concluído” no Kanban, pois, para nosso grupo, essa informação não agregava tanto. Quando uma tarefa desaparecia do quadro, já entendíamos que ela havia sido finalizada, visto que a conclusão era sempre comunicada diretamente pelo WhatsApp.
+
+Além do Kanban, uma ferramenta extremamente útil no nosso processo de organização foi o GitHub. Por meio de commits com mensagens bem explicativas, conseguimos indicar claramente o início e a finalização de cada alteração. Isso foi essencial para manter a organização do projeto e praticamente eliminou os problemas de conflito de merge, que ocorrem quando duas pessoas editam a mesma parte do código simultaneamente.
+
+![Exemplo de organização github](/docs/images/github.exemplos.jpg)
+
+Outro fator que contribuiu bastante para a organização foi a divisão prévia de responsabilidades. Antes mesmo de começarmos o desenvolvimento do site, definimos qual página seria responsabilidade de cada integrante. Mesmo que uma página envolvesse funcionalidades de interesse de várias pessoas, ela tinha um responsável principal. Assim, qualquer alteração desejada por outros membros naquela página deveria ser previamente comunicada ao responsável, que auxiliava no processo e, se necessário, estabelecia limites para garantir o bom andamento das tarefas e evitar retrabalho.
 
 # Solução Implementada
 
