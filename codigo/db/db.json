@@ -7,31 +7,36 @@
     "dia_semana": "terça-feira",
     "dtRemedio": "0000-00-00"
   },
-
   "usuarios": [
     {
-      "id": 1,
+      "id": "1",
       "login": "admin",
       "senha": "123",
       "nome": "Administrador do Sistema",
       "email": "admin@abc.com"
     },
     {
-      "id": 2,
+      "id": "2",
       "login": "user",
       "senha": "123",
       "nome": "Usuario Comum",
       "email": "user@abc.com"
     },
     {
-      "id": 3,
+      "id": "3",
       "login": "rommel",
       "senha": "123",
       "nome": "Rommel",
       "email": "rommel@gmail.com"
+    },
+    {
+      "id": "cc36",
+      "nome": "Eduardo Borges de Souza",
+      "login": "DUDUH DU PIX",
+      "senha": "123456",
+      "email": "eduardoborgesdesouza4@gmail.com"
     }
   ],
-
   "eventos": [
     {
       "id": "1",
@@ -49,7 +54,6 @@
       "start": "2025-06-03T20:00:00"
     }
   ],
-
   "homeScreen": {
     "resumo": {
       "passados": [
@@ -87,6 +91,5 @@
       "proximoDia": []
     }
   },
-
   "events": []
 }
