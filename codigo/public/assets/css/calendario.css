@@ -3,11 +3,14 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  height: 100%;
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #ffffff;
   color: #3a0c0c;
+  display: flex;
+  flex-direction: column;
 }
 
 .text-logo {
@@ -23,13 +26,14 @@ body {
   flex-wrap: wrap;
   gap: 24px;
   padding: 20px;
-  min-height: calc(100vh - 200px);
+  flex: 1;
 }
 
 #calendar {
   flex: 3;
   min-width: 600px;
   width: 100%;
+  min-height: 650px;
 }
 
 .filtros {
