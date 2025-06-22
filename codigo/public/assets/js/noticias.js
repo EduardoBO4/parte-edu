@@ -46,42 +46,42 @@ class NoticiasAPI {
             {
                 title: "Inovações Tecnológicas Revolucionam o Controle de Medicamentos",
                 description: "Novos aplicativos e dispositivos inteligentes ajudam pacientes a manterem a rotina de remédios em dia, melhorando significativamente a adesão ao tratamento.",
-                urlToImage: "https://via.placeholder.com/300x200/c62828/ffffff?text=Tecnologia+na+Saúde",
+                urlToImage: "https://uploads.metroimg.com/wp-content/uploads/2025/06/21124657/1-3025.jpg",
                 url: "#",
                 publishedAt: new Date().toISOString()
             },
             {
                 title: "Médicos Destacam Importância da Vida Saudável na Prevenção",
                 description: "Especialistas enfatizam que hábitos saudáveis, aliados ao uso correto de medicamentos, são fundamentais para a qualidade de vida.",
-                urlToImage: "https://via.placeholder.com/300x200/c62828/ffffff?text=Vida+Saudável",
+                urlToImage: "https://uploads.metroimg.com/wp-content/uploads/2025/06/21124819/balao-pulo.jpg",
                 url: "#",
                 publishedAt: new Date().toISOString()
             },
             {
                 title: "Novos Tratamentos Promissores para Doenças Crônicas",
                 description: "Pesquisas recentes mostram avanços significativos no desenvolvimento de terapias inovadoras para melhorar a saúde e qualidade de vida.",
-                urlToImage: "https://via.placeholder.com/300x200/c62828/ffffff?text=Novos+Tratamentos",
+                urlToImage: "https://uploads.metroimg.com/wp-content/uploads/2025/04/11142541/Xicara-de-cha_0.jpg",
                 url: "#",
                 publishedAt: new Date().toISOString()
             },
             {
                 title: "Importância do Controle de Horários para Medicamentos",
                 description: "Estudos comprovam que seguir rigorosamente os horários de medicação aumenta em 85% a eficácia do tratamento.",
-                urlToImage: "https://via.placeholder.com/300x200/c62828/ffffff?text=Controle+de+Horários",
+                urlToImage: "https://s1.trrsf.com/update-1698692222/fe/zaz-mod-t360-icons/svg/logos/terra-16x9-borda.png",
                 url: "#",
                 publishedAt: new Date().toISOString()
             },
             {
                 title: "Como Aplicativos de Saúde Estão Transformando o Cuidado Pessoal",
                 description: "Ferramentas digitais facilitam o acompanhamento médico e melhoram a comunicação entre pacientes e profissionais de saúde.",
-                urlToImage: "https://via.placeholder.com/300x200/c62828/ffffff?text=Apps+de+Saúde",
+                urlToImage: "https://sm.ign.com/t/ign_br/screenshot/default/geracao-beta_gjqf.1200.png",
                 url: "#",
                 publishedAt: new Date().toISOString()
             },
             {
                 title: "Dicas Essenciais para Não Esquecer de Tomar Remédios",
                 description: "Profissionais da saúde compartilham estratégias eficazes para manter a disciplina no uso de medicamentos diários.",
-                urlToImage: "https://via.placeholder.com/300x200/c62828/ffffff?text=Dicas+Remédios",
+                urlToImage: "https://catracalivre.com.br/cdn-cgi/image/f=auto,q=60,w=1200,h=630,fit=cover,format=jpeg/wp-content/uploads/2024/05/istock-1319981016.jpg",
                 url: "#",
                 publishedAt: new Date().toISOString()
             }

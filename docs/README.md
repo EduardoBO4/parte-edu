@@ -158,29 +158,32 @@ Descrição para a tela XPTO
 
 # Metodologia
 
-Nós nos dividimos igualmente para cada tarefa, nenhum ficou responsavel 100% por uma coisa, usamos o figma e o miro para todo o projeto ate o atual momento.
+A comunicação do grupo foi centralizada no Discord, que se mostrou uma ferramenta prática para alinhar ideias, organizar reuniões e manter o contato entre integrantes com responsabilidades parecidas. O laboratório da universidade funcionou como um espaço estratégico para encontros presenciais, onde rolava a troca de ideias e o aprofundamento das pesquisas. Para garantir que todos tivessem acesso às informações e pudessem colaborar em tempo real, foram utilizados documentos compartilhados, como os do Google Docs. A distribuição das tarefas aconteceu de maneira equilibrada, respeitando a preferência e a afinidade de cada membro com as atividades. As contribuições no Miro também surgiram de forma coletiva, sendo construídas durante os momentos de troca nas aulas e reuniões do grupo.
+
+
 
 ## Ferramentas
 
 Relação de ferramentas empregadas pelo grupo durante o projeto.
 
-| Ambiente                    | Plataforma | Link de acesso                                     |
-| --------------------------- | ---------- | -------------------------------------------------- |
-| Processo de Design Thinking | Miro       | https://miro.com/XXXXXXX ⚠️ EXEMPLO ⚠️            |
-| Repositório de código       | GitHub     | https://github.com/XXXXXXX ⚠️ EXEMPLO ⚠️            |
-| Hospedagem do site          | Render     | https://site.render.com/XXXXXXX ⚠️ EXEMPLO ⚠️     |
-| Protótipo Interativo        | MarvelApp  | https://marvelapp.com/XXXXXXX ⚠️ EXEMPLO ⚠️        |
-|                             |            |                                                    |
+| Ambiente                    | Plataforma | Link de acesso                                                                      |
+| --------------------------- | ---------- | --------------------------------------------------                                  |
+| Processo de Design Thinking | Miro       | https://miro.com/app/board/uXjVITq_x2M=/?share_link_id=275512533063                 |
+| Repositório de código       | GitHub     |https://github.com/ICEI-PUC-Minas-PMGCC-TI/atividade-01-grupo-lembretes-para-remedios|
+| Hospedagem do site          | Render     |https://atividade-01-grupo-lembretes-para.onrender.com/index.html                    |
+| Protótipo Interativo        | Figma      | https://www.figma.com/proto/PRi6Jtl4xPX1nnvQmc91sr/Untitled?node-id=20-2&p=f&t=IE9kzIedYfDvG8Jd-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=20%3A2                          |
+|                             |            |                                                                                     |
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Liste as ferramentas empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível. Inclua itens como: (1) Editor de código, (2) )ferramentas de comunicação, (3) )ferramentas de diagramação, (4) )plataformas de hospedagem, entre outras.
+Ferramentas Utilizadas: 1) Editor de Codigo: VsCode
+2) Ferramentas de Comunicacao: Discord e Whatsapp
+3) Ferramentas de Diagramacao: Figma, Excalidraw
+4) Platforma de Hospedagem: Render
 
 ## Gerenciamento do Projeto
 
 Divisão de papéis no grupo e apresentação da estrutura da ferramenta de controle de tarefas (Kanban).
 
-![Exemplo de Kanban](/docs/images/exemplo-kanban.png)
+![Esse é nosso Kanban](/docs/images/Kanban.jpg) 
 
 Nossa organização foi guiada, principalmente, por dois meios: o WhatsApp e o Kanban. Utilizávamos o Kanban como uma ferramenta visual para acompanhar o andamento das atividades que precisavam ser realizadas, permitindo que todos tivessem uma visão geral do progresso do projeto.
 
@@ -188,7 +191,7 @@ No entanto, raramente utilizávamos a coluna “Concluído” no Kanban, pois, p
 
 Além do Kanban, uma ferramenta extremamente útil no nosso processo de organização foi o GitHub. Por meio de commits com mensagens bem explicativas, conseguimos indicar claramente o início e a finalização de cada alteração. Isso foi essencial para manter a organização do projeto e praticamente eliminou os problemas de conflito de merge, que ocorrem quando duas pessoas editam a mesma parte do código simultaneamente.
 
-![Exemplo de organização github](/docs/images/github.exemplos.jpg)
+![Essa é nossa organização github](/docs/images/github.exemplos.jpg)
 
 Outro fator que contribuiu bastante para a organização foi a divisão prévia de responsabilidades. Antes mesmo de começarmos o desenvolvimento do site, definimos qual página seria responsabilidade de cada integrante. Mesmo que uma página envolvesse funcionalidades de interesse de várias pessoas, ela tinha um responsável principal. Assim, qualquer alteração desejada por outros membros naquela página deveria ser previamente comunicada ao responsável, que auxiliava no processo e, se necessário, estabelecia limites para garantir o bom andamento das tarefas e evitar retrabalho.
 
@@ -200,85 +203,316 @@ Esta seção apresenta todos os detalhes da solução criada no projeto.
 
 O vídeo a seguir traz uma apresentação do problema que a equipe está tratando e a proposta de solução. ⚠️ EXEMPLO ⚠️
 
-[![Vídeo do projeto](images/video.png)](https://www.youtube.com/embed/70gGoFyGeqQ)
+https://youtu.be/k8XKycWVWW8
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> O video de apresentação é voltado para que o público externo possa conhecer a solução. O formato é livre, sendo importante que seja apresentado o problema e a solução numa linguagem descomplicada e direta.
->
-> Inclua um link para o vídeo do projeto.
-
-## Funcionalidades
+## Funcionalidades (PRECISAMO FAZER)
 
 Esta seção apresenta as funcionalidades da solução.Info
 
-##### Funcionalidade 1 - Cadastro de Contatos ⚠️ EXEMPLO ⚠️
+##### Funcionalidade 1 - Cadastro de Lembretes 
 
-Permite a inclusão, leitura, alteração e exclusão de contatos para o sistema
+Permite a inclusão, leitura, alteração e exclusão de lembretes para o sistema
 
-* **Estrutura de dados:** [Contatos](#ti_ed_contatos)
+* **Estrutura de dados:** [Contatos](#ti_ed_contatos)  (PRECISAMOS FAZER) (NAO ENTENDI)
 * **Instruções de acesso:**
   * Abra o site e efetue o login
-  * Acesse o menu principal e escolha a opção Cadastros
-  * Em seguida, escolha a opção Contatos
+  * Acesse o menu principal e escolha a opção (Criar mais 1 lembrete)
+  * Em seguida, escolha a opção Sua lista de lembretes
+
 * **Tela da funcionalidade**:
 
-![Tela de Funcionalidade](images/exemplo-funcionalidade.png)
+![alt text]({F4A7230C-416D-4D88-B552-77803C5856A0}.png)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente cada uma das funcionalidades que a aplicação fornece tanto para os usuários quanto aos administradores da solução.
->
-> Inclua, para cada funcionalidade, itens como: (1) titulos e descrição da funcionalidade; (2) Estrutura de dados associada; (3) o detalhe sobre as instruções de acesso e uso.
+
+
+
+(1) titulos e descrição da funcionalidade; (2) Estrutura de dados associada; (3) o detalhe sobre as instruções de acesso e uso.
+
+1 - 1) Index
+      - API de noticias
+      - Mini lista de lembretes e de calendário
+    
+  - 2) Crição de Lembretes
+      - Nome do remédio
+      - Descrição
+      - Como tomar
+      - Conta do usuario
+      - Data
+      - Horário
+
+  - 3) Lista de Lembretes
+      -Visualizar lembretes
+      -Filtro por pessoa
+      -Tomar
+      -Editar
+      -Remover
+
+  - 4) Calendário
+      - Visualizar Lembretes
+      - Filtro com Data e horário para remédios iguais
+      - Pop up com descricoes
+
+   - 5) Suporte
+      - Nome
+      - Mensagem
+      - Email
+      
+2 - 1) Index
+    - "homeScreen": {
+          "resumo": {
+            "passados": [
+              {
+                "id": 2,
+                "nome": "Paracetamol",
+                "descricao": "500mg após o almoço",
+                "como_tomar": "oral",
+                "dependentes": "eu",
+                "horario": "01:00 PM",
+                "data": "2025-05-20"
+              },
+              {
+                "id": 3,
+                "nome": "Insulina",
+                "descricao": "Dose de 10 unidades",
+                "como_tomar": "subcutânea",
+                "dependentes": "Minha mãe",
+                "horario": "08:00 AM",
+                "data": "2025-05-20"
+              }
+            ],
+            "hoje": [
+              {
+                "id": 1,
+                "nome": "Dipirona",
+                "descricao": "10ml via oral",
+                "como_tomar": "oral",
+                "dependentes": "eu",
+                "horario": "12:00 PM",
+                "data": "2025-05-21"
+              },
+              {
+                "id": 4,
+                "nome": "Amoxicilina",
+                "descricao": "500mg de 8 em 8 horas",
+                "como_tomar": "oral",
+                "dependentes": "Meu pai",
+                "horario": "08:00 AM",
+                "data": "2025-05-21"
+              }
+            ],
+            "proximoDia": [
+              {
+                "id": 5,
+                "nome": "Losartana",
+                "descricao": "50mg pela manhã",
+                "como_tomar": "oral",
+                "dependentes": "Minha avó",
+                "horario": "09:00 AM",
+                "data": "2025-05-22"
+              }
+            ]
+          }
+        }
+      }
+
+
+
+    2) Criação de Lembretes:
+          - "lembretes": [
+              {
+                "id": 1,
+                "nome": "Dipirona",
+                "descricao": "10ml via oral",
+                "como_tomar": "oral",
+                "dependentes": "eu",
+                "horario": "12:00 PM",
+                "data": "2025-05-21"
+              },
+              {
+                "id": 2,
+                "nome": "Paracetamol",
+                "descricao": "500mg após o almoço",
+                "como_tomar": "oral",
+                "dependentes": "eu",
+                "horario": "01:00 PM",
+                "data": "2025-05-20"
+              },
+              {
+                "id": 3,
+                "nome": "Insulina",
+                "descricao": "Dose de 10 unidades",
+                "como_tomar": "subcutânea",
+                "dependentes": "Minha mãe",
+                "horario": "08:00 AM",
+                "data": "2025-05-20"
+              },
+              {
+                "id": 4,
+                "nome": "Amoxicilina",
+                "descricao": "500mg de 8 em 8 horas",
+                "como_tomar": "oral",
+                "dependentes": "Meu pai",
+                "horario": "08:00 AM",
+                "data": "2025-05-21"
+              },
+              {
+                "id": 5,
+                "nome": "Losartana",
+                "descricao": "50mg pela manhã",
+                "como_tomar": "oral",
+                "dependentes": "Minha avó",
+                "horario": "09:00 AM",
+                "data": "2025-05-22"
+              }
+            ],
+
+
+    4) Calendário: 
+        -"eventos": [
+          {
+            "id": 1,
+            "nome": "Dipirona",
+            "descricao": "10ml via oral",
+            "como_tomar": "oral",
+            "dependentes": "eu",
+            "horario": "12:00 PM",
+            "data": "2025-05-21"
+          },
+          {
+            "id": 2,
+            "nome": "Paracetamol",
+            "descricao": "500mg após o almoço",
+            "como_tomar": "oral",
+            "dependentes": "eu",
+            "horario": "01:00 PM",
+            "data": "2025-05-20"
+          },
+          {
+            "id": 3,
+            "nome": "Insulina",
+            "descricao": "Dose de 10 unidades",
+            "como_tomar": "subcutânea",
+            "dependentes": "Minha mãe",
+            "horario": "08:00 AM",
+            "data": "2025-05-20"
+          },
+          {
+            "id": 4,
+            "nome": "Amoxicilina",
+            "descricao": "500mg de 8 em 8 horas",
+            "como_tomar": "oral",
+            "dependentes": "Meu pai",
+            "horario": "08:00 AM",
+            "data": "2025-05-21"
+          },
+          {
+            "id": 5,
+            "nome": "Losartana",
+            "descricao": "50mg pela manhã",
+            "como_tomar": "oral",
+            "dependentes": "Minha avó",
+            "horario": "09:00 AM",
+            "data": "2025-05-22"
+          }
+        ],
+
+
+    3 e 5) Davi e Cris nao fizeram seus json 
+
+
+3-  Nosso trabalho é sobre criacão de lembretes, logo:
+      Ao abrir o site você verá o index, nele possuimos algums opções. O primeiro passo seria fazer registro e logar, logo após  acessar o criar lembrete, clicando nele pode-se colocar nome, data, horário, modo de tomar, descricao e o dependente. Após tê-lo criado (ou criado mais de 1 remédio ) tem-se 2 opções para prosseguir, poderá ir ao calendário e visualizar todos os lembretes já criados e sua descrição, ou se por ventura preferir editar ou excluir o lembrete criado poderá ir a aba lista de lembretes. Se tiver algum problema ou precisar de ajuda existe o botão ajuda.
+
 
 ## Estruturas de Dados
 
 Descrição das estruturas de dados utilizadas na solução com exemplos no formato JSON.Info
 
-##### Estrutura de Dados - Contatos   ⚠️ EXEMPLO ⚠️
+      1- 👤 Usuários (usuarios)
+          Representa os perfis de acesso ao sistema. Cada usuário possui informações de login e contato.
 
-Contatos da aplicação
+          {
+            "id": 1,
+            "login": "admin",
+            "senha": "123",
+            "nome": "Administrador do Sistema",
+            "email": "admin@abc.com"
+          }
 
-```json
-  {
-    "id": 1,
-    "nome": "Leanne Graham",
-    "cidade": "Belo Horizonte",
-    "categoria": "amigos",
-    "email": "Sincere@april.biz",
-    "telefone": "1-770-736-8031",
-    "website": "hildegard.org"
-  }
-  
-```
+          Atributos:
+          id: Identificador único do usuário (número).
+          login: Nome de usuário para login (texto).
+          senha: Senha de acesso (texto).
+          nome: Nome completo do usuário (texto).
+          email: Endereço de e-mail (texto). 
+          --------------------------------------------------
 
-##### Estrutura de Dados - Usuários  ⚠️ EXEMPLO ⚠️
+      2-⏰ Lembretes (lembretes)
+          São os medicamentos agendados para serem tomados, com todos os detalhes para ajudar na organização.
 
-Registro dos usuários do sistema utilizados para login e para o perfil do sistema
+          {
+            "id": 1,
+            "nome": "Dipirona",
+            "descricao": "10ml via oral",
+            "como_tomar": "oral",
+            "dependentes": "eu",
+            "horario": "12:00 PM",
+            "data": "2025-05-21"
+          }
+          Atributos:
+          id: Identificador único do lembrete (número).
 
-```json
-  {
-    id: "eed55b91-45be-4f2c-81bc-7686135503f9",
-    email: "admin@abc.com",
-    id: "eed55b91-45be-4f2c-81bc-7686135503f9",
-    login: "admin",
-    nome: "Administrador do Sistema",
-    senha: "123"
-  }
-```
+          nome: Nome do medicamento (texto).
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente as estruturas de dados utilizadas na solução tanto para dados utilizados na essência da aplicação quanto outras estruturas que foram criadas para algum tipo de configuração
->
-> Nomeie a estrutura, coloque uma descrição sucinta e apresente um exemplo em formato JSON.
->
-> **Orientações:**
->
-> * [JSON Introduction](https://www.w3schools.com/js/js_json_intro.asp)
-> * [Trabalhando com JSON - Aprendendo desenvolvimento web | MDN](https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Objects/JSON)
+          descricao: Instruções ou dosagem (texto).
 
-## Módulos e APIs
+          como_tomar: Forma de administração (texto).
+
+          dependentes: Para quem é o lembrete (texto).
+
+          horario: Horário programado (texto).
+
+          data: Data de aplicação do lembrete (formato: AAAA-MM-DD).
+          -----------------------------------------------------
+
+      3-📅 Eventos (eventos)
+        Estrutura semelhante a lembretes, mas usada especificamente para exibição no calendário. Serve como base para renderizar os lembretes dentro da agenda.
+
+        {
+          "id": 3,
+          "nome": "Insulina",
+          "descricao": "Dose de 10 unidades",
+          "como_tomar": "subcutânea",
+          "dependentes": "Minha mãe",
+          "horario": "08:00 AM",
+          "data": "2025-05-20"
+        }
+        Observação: A estrutura dos eventos é idêntica à de lembretes, podendo ser gerada automaticamente a partir deles.
+        -------------------------------------------------------------
+
+      4-  🏠 Tela Inicial (homeScreen)
+          Essa estrutura centraliza os lembretes organizados por data (passados, de hoje e futuros) para facilitar o resumo visual na tela inicial do sistema.
+
+          {
+            "resumo": {
+              "passados": [...],
+              "hoje": [...],
+              "proximoDia": [...]
+            }
+          }
+          Cada lista contém objetos no mesmo formato da estrutura lembretes.
+
+          Atributos:
+          resumo: Objeto contendo listas de lembretes separados por:
+
+          passados: Lembretes com data anterior ao dia atual.
+
+          hoje: Lembretes marcados para o dia atual.
+
+          proximoDia: Lembretes marcados para o dia seguinte.
+
+
+## Módulos e APIs (PRECISAMO FAZER)
 
 Esta seção apresenta os módulos e APIs utilizados na solução
 
@@ -299,7 +533,7 @@ Esta seção apresenta os módulos e APIs utilizados na solução
 >
 > Apresente os módulos e APIs utilizados no desenvolvimento da solução. Inclua itens como: (1) Frameworks, bibliotecas, módulos, etc. utilizados no desenvolvimento da solução; (2) APIs utilizadas para acesso a dados, serviços, etc.
 
-# Referências
+# Referências (PRECISAMOS FAZER)
 
 As referências utilizadas no trabalho foram:
 

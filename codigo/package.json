@@ -1,110 +1,15 @@
 {
-  "criacaoLembrete": [
-    {
-      "nome": "dipirona",
-      "desc": "10ml",
-      "ingestao": "oral",
-      "data": "00-00-0000",
-      "dia": "S"
-    }
-  ],
-  "homeScreen": {
-    "resumo": {
-      "passados": [
-        {
-          "id": 1,
-          "data": "2025-05-20",
-          "titulo": "Tomar Paracetamol",
-          "descricao": "500mg após o almoço",
-          "horario": "13:00"
-        },
-        {
-          "id": 2,
-          "data": "2025-05-20",
-          "titulo": "Aplicar Insulina",
-          "descricao": "Dose de 10 unidades",
-          "horario": "08:00"
-        }
-      ],
-      "hoje": [
-        {
-          "id": 3,
-          "data": "2025-05-21",
-          "titulo": "Tomar Amoxicilina",
-          "descricao": "500mg de 8 em 8 horas",
-          "horario": "08:00"
-        }
-      ],
-      "proximoDia": []
-    }
+  "name": "codigo",
+  "version": "1.0.0",
+  "description": "Essa é a pasta para a manter o programa que vocês vão construir no contexto dessa disciplina.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "events": [
-    [
-      {
-        "title": "Tomar Dipirona",
-        "start": "2025-06-01T08:00:00",
-        "end": "2025-06-01T08:15:00"
-      },
-      {
-        "title": "Vitamina D",
-        "start": "2025-06-01T12:00:00"
-      },
-      {
-        "title": "Antibiótico - Dose 1",
-        "start": "2025-06-01T08:00:00"
-      },
-      {
-        "title": "Antibiótico - Dose 2",
-        "start": "2025-06-01T20:00:00"
-      },
-      {
-        "title": "Repor Estoque - Remédio da pressão",
-        "start": "2025-06-05"
-      },
-      {
-        "title": "Consulta médica",
-        "start": "2025-06-07T09:30:00",
-        "end": "2025-06-07T10:00:00"
-      }
-    ]
-  ],
-  "formularioSuporte": {
-    "campos": {
-      "nome": "",
-      "email": "",
-      "mensagem": ""
-    },
-    "acoes": {
-      "enviar": {
-        "tipo": "POST",
-        "url": "/api/enviarMensagem",
-        "mensagemSucesso": "Mensagem enviada com sucesso!"
-      },
-      "voltar": {
-        "acao": "limparFormularioERedirecionar",
-        "destino": "home.html"
-      }
-    }
-  },
-  "remedios": [
-    {
-      "id": 1,
-      "nome": "Remédio para Dor de Cabeça",
-      "dosagem": "500mg",
-      "frequencia": "A cada 8 horas",
-      "horario": "10:00",
-      "status": "pendente"
-    },
-    {
-      "id": 2,
-      "nome": "Vitamina C",
-      "dosagem": "1g",
-      "frequencia": "Uma vez ao dia",
-      "horario": "08:30",
-      "status": "pendente"
-    }
-  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "json-server": "^1.0.0-beta.3"
+    "json-server": "^0.17.4"
   }
 }

@@ -27,9 +27,77 @@
       "senha": "123456",
       "nome": "Eduardo Borges de Souza",
       "email": "eduardoborgesdesouza4@gmail.com"
+    },
+    {
+      "nome": "ssd",
+      "login": "mavuika do genshin",
+      "senha": "123",
+      "email": "raphaddc@gmail.com",
+      "id": 5
+    },
+    {
+      "nome": "Raphael Dantas",
+      "login": "rapha",
+      "senha": "123",
+      "email": "batat@gmail.com",
+      "id": 6
+    },
+    {
+      "nome": "rapj",
+      "login": "raphaeldantas",
+      "senha": "123",
+      "email": "teste2@gmail.com",
+      "id": 7
     }
   ],
   "lembretes": [
+    {
+      "id": 1,
+      "nome": "Dipirona",
+      "descricao": "10ml via oral",
+      "como_tomar": "oral",
+      "dependentes": "eu",
+      "horario": "12:00 PM",
+      "data": "2025-05-21"
+    },
+    {
+      "id": 2,
+      "nome": "Paracetamol",
+      "descricao": "500mg após o almoço",
+      "como_tomar": "oral",
+      "dependentes": "eu",
+      "horario": "01:00 PM",
+      "data": "2025-05-20"
+    },
+    {
+      "id": 3,
+      "nome": "Insulina",
+      "descricao": "Dose de 10 unidades",
+      "como_tomar": "subcutânea",
+      "dependentes": "Minha mãe",
+      "horario": "08:00 AM",
+      "data": "2025-05-20"
+    },
+    {
+      "id": 4,
+      "nome": "Amoxicilina",
+      "descricao": "500mg de 8 em 8 horas",
+      "como_tomar": "oral",
+      "dependentes": "Meu pai",
+      "horario": "08:00 AM",
+      "data": "2025-05-21"
+    },
+    {
+      "id": 5,
+      "nome": "Losartana",
+      "descricao": "50mg pela manhã",
+      "como_tomar": "oral",
+      "dependentes": "Minha avó",
+      "horario": "09:00 AM",
+      "data": "2025-05-22"
+    }
+  ],
+  "eventos": [
     {
       "id": 1,
       "nome": "Dipirona",

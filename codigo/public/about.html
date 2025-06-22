@@ -1,92 +1,236 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="./assets/js/login.js"></script>
-    <style>
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: white;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-        }
-
-        .user-info .user-name {
-            font-weight: bold;
-        }
-
-        .logout-btn {
-            background: #d32f2f;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 0.8em;
-            transition: background-color 0.3s;
-        }
-
-        .logout-btn:hover {
-            background: #b71c1c;
-        }
-    </style>
+    <title>Sobre Nós - Remedicy</title>
+    <link rel="stylesheet" href="assets/css/about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="banner"><img src="./assets/images/banner_ti.png" alt=""></div>
-        <div class="barra-info">
-            <nav class="menu">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">Sobre nós</a></li>
+    <header class="header">
+        <div class="img-logo">
+            <a href="index.html">
+                <img src="img/logo.remed.jpg" alt="Logotipo da Remedicy" />
+            </a>
+            <h1 class="text-logo">Remedicy</h1>
+        </div>
+        <nav class="infos-mais">
+            <a class="botao-link" href="index.html">Home</a>
+            <a class="botao-link" href="listaLembretes.html">Meus Lembretes</a>
+            <a class="botao-link" href="ajuda.html">Suporte</a>
+            <div id="user-status"></div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-about">
+            <div class="hero-overlay">
+                <h1>Nossa Jornada: Inovação e Cuidado</h1>
+                <p>Na Remedicy, acreditamos que a tecnologia deve servir à vida. Somos um projeto nascido da paixão por inovação e do desejo de simplificar a rotina de milhares de pessoas.</p>
+            </div>
+        </section>
+
+        <section class="section-container mission-vision">
+            <div class="mission-card">
+                <i class="fas fa-bullseye icon-large"></i>
+                <h2>Nossa Missão</h2>
+                <p>Desenvolver soluções intuitivas e eficazes para o gerenciamento de saúde, empoderando indivíduos a cuidar de si e de seus entes queridos com tranquilidade e precisão.</p>
+            </div>
+            <div class="vision-card">
+                <i class="fas fa-lightbulb icon-large"></i>
+                <h2>Nossa Visão</h2>
+                <p>Ser a plataforma líder em bem-estar digital, reconhecida pela excelência em tecnologia e pelo impacto positivo na qualidade de vida da sociedade.</p>
+            </div>
+        </section>
+
+        <section class="section-container innovation-story">
+            <h2 class="section-title"><i class="fas fa-flask"></i> A História da Inovação</h2>
+            <p>A Remedicy nasceu nos corredores inovadores da Pontifícia Universidade Católica de Minas Gerais (PUC Minas), no coração do curso de Ciência da Computação. Em 2024, durante o projeto interdisciplinar do 1º período, um grupo de estudantes visionários percebeu uma lacuna crucial: a complexidade em gerenciar múltiplos lembretes de medicamentos, especialmente para famílias com dependentes.</p>
+            <p>Com o apoio de professores e a infraestrutura de ponta dos laboratórios da PUC, aplicamos os mais recentes conceitos de desenvolvimento ágil, UX/UI centrado no usuário e arquitetura de sistemas robusta. O resultado? Uma plataforma que não é apenas um lembrete, mas um verdadeiro assistente pessoal de saúde.</p>
+            <p>Nosso projeto tem sido uma jornada de aprendizado contínuo e dedicação, buscando sempre aprimorar a experiência do usuário e oferecer um serviço de valor inestimável para a comunidade.</p>
+        </section>
+
+        <section class="section-container impact-data">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> Nosso Impacto em Números</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>+15.000</h3>
+                    <p>Usuários Ativos</p>
+                </div>
+                <div class="stat-item">
+                    <h3>+500.000</h3>
+                    <p>Lembretes Gerenciados</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Taxa de Conformidade no Uso</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2024</h3>
+                    <p>Ano de Fundação (PUC Minas)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-container team-section">
+            <h2 class="section-title"><i class="fas fa-users-cog"></i> Nossa Equipe de Elite da PUC Minas</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150/d32f2f/ffffff?text=C" alt="Cristiano Avelar">
+                    <h3>Cristiano Avelar</h3>
+                    <p><strong>Especialidade:</strong> Arquiteto de Software & Engenheiro de Dados</p>
+                    <p>Visionário na criação de estruturas escaláveis e otimização de banco de dados.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150/d32f2f/ffffff?text=D" alt="Davi Penna">
+                    <h3>Davi Penna</h3>
+                    <p><strong>Especialidade:</strong> Desenvolvedor Front-end & Especialista em UX/UI</p>
+                    <p>Apaixonado por criar interfaces intuitivas e experiências de usuário memoráveis.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150/d32f2f/ffffff?text=E" alt="Eduardo Borges">
+                    <h3>Eduardo Borges</h3>
+                    <p><strong>Especialidade:</strong> Desenvolvedor Back-end & Segurança Cibernética</p>
+                    <p>Garante a robustez e a segurança dos dados, construindo a espinha dorsal do sistema.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150/d32f2f/ffffff?text=H" alt="Henrique Cesar">
+                    <h3>Henrique Cesar</h3>
+                    <p><strong>Especialidade:</strong> Analista de Sistemas & Gerente de Projetos</p>
+                    <p>O cérebro por trás da organização, garantindo que o projeto siga o caminho certo.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150/d32f2f/ffffff?text=R" alt="Raphael Dantas">
+                    <h3>Raphael Dantas</h3>
+                    <p><strong>Especialidade:</strong> Especialista em QA & Otimização de Performance</p>
+                    <p>Assegura a qualidade impecável do software e a experiência do usuário sem falhas.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-container call-to-action">
+            <h2 class="section-title"><i class="fas fa-handshake"></i> Junte-se à Nossa Comunidade!</h2>
+            <p>Faça parte da revolução no cuidado com a saúde. Conecte-se conosco e comece a transformar sua rotina.</p>
+            <a href="login.html" class="cta-button"><i class="fas fa-arrow-right"></i> Começar Agora</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column footer-about">
+                <h4><i class="fa-solid fa-pills"></i> Remedicy</h4>
+                <p>Simplificando o gerenciamento da sua saúde. Lembretes, calendário e mais em um só lugar.</p>
+                <p>Projeto acadêmico da disciplina de Trabalho Interdisciplinar.</p>
+            </div>
+
+            <div class="footer-column footer-links-group">
+                <h4><i class="fa-solid fa-link"></i> Links Rápidos</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Página Inicial</a></li>
+                    <li><a href="about.html">Sobre Nós</a></li>
+                    <li><a href="listaLembretes.html">Meus Lembretes</a></li>
+                    <li><a href="ajuda.html">Ajuda e FAQ</a></li>
                 </ul>
-            </nav>
-            <div id="user-status">
-                <!-- Será preenchido via JavaScript -->
+            </div>
+
+            <div class="footer-column footer-team-footer">
+                <h4><i class="fa-solid fa-users"></i> Equipe</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Cristiano Avelar</a></li>
+                    <li><a href="#">Davi Penna</a></li>
+                    <li><a href="#">Eduardo Borges</a></li>
+                    <li><a href="#">Henrique Cesar</a></li>
+                    <li><a href="#">Raphael Dantas</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column footer-contact">
+                <h4><i class="fa-solid fa-headset"></i> Contato</h4>
+                <ul class="footer-links">
+                    <li><i class="fa-solid fa-envelope"></i> suporte@remedicy.com.br</li>
+                    <li><i class="fa-solid fa-phone"></i> (31) 98887-9261</li>
+                    <li><i class="fa-solid fa-map-marker-alt"></i> Contagem, MG - Brasil</li>
+                </ul>
             </div>
         </div>
-    </header>
-    <main>
-        <h1>Sobre nós</h1>
-        <p>Página com informações sobre o site.</p>
-    </main>
-<script>
-        function atualizarStatusUsuario() {
-            const usuario = getCurrentUser();
-            const userStatus = document.getElementById('user-status');
-            
-            if (usuario && usuario.nome) {
-                userStatus.innerHTML = `
-                    <div class="user-info">
-                        <i class="fa-solid fa-user-circle"></i>
-                        <span class="user-name">${usuario.nome}</span>
-                        <button class="logout-btn" onclick="confirmarLogout()">
-                            <i class="fa-solid fa-sign-out-alt"></i> Sair
-                        </button>
-                    </div>
-                `;
-            } else {
-                userStatus.innerHTML = `
-                    <a class="botao-link" href="/codigo/public/login.html">Login/Inscrição</a>
-                `;
-            }
-        }
 
-        function confirmarLogout() {
-            if (confirm('Tem certeza que deseja sair?')) {
-                logoutUser();
-            }
-        }
+        <div class="footer-bottom">
+            <p>Remedicy © 2025. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
-        // Executar ao carregar a página
-        atualizarStatusUsuario();
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userStatusDiv = document.getElementById('user-status');
+
+            const carregarScriptLogin = () => {
+                const script = document.createElement('script');
+                script.src = 'assets/js/login.js'; // Caminho ajustado
+                script.onload = atualizarStatusUsuario;
+                document.head.appendChild(script);
+            };
+
+            const atualizarStatusUsuario = () => {
+                // Assegura que as funções do login.js estejam disponíveis
+                if (typeof getCurrentUser !== 'function' || typeof logoutUser !== 'function') {
+                    console.error("Funções de login não carregadas. Verifique o caminho de login.js.");
+                    userStatusDiv.innerHTML = `<a class="botao-link" href="login.html">Login/Inscrição</a>`;
+                    return;
+                }
+
+                const usuario = getCurrentUser();
+                
+                if (usuario && usuario.nome) {
+                    userStatusDiv.innerHTML = `
+                        <div class="user-info">
+                            <i class="fa-solid fa-user-circle"></i>
+                            <span class="user-name">${usuario.nome}</span>
+                            <button class="logout-btn" onclick="confirmarLogout()">
+                                <i class="fa-solid fa-sign-out-alt"></i> Sair
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    userStatusDiv.innerHTML = `
+                        <a class="botao-link" href="login.html">Login/Inscrição</a>
+                    `;
+                }
+            };
+
+            window.confirmarLogout = () => {
+                if (confirm('Tem certeza que deseja sair?')) {
+                    if (typeof logoutUser === 'function') {
+                        logoutUser();
+                        atualizarStatusUsuario(); // Atualiza a UI após o logout
+                    } else {
+                        console.error("Função logoutUser não disponível.");
+                    }
+                }
+            };
+
+            carregarScriptLogin();
+        });
     </script>
 </body>
 </html>

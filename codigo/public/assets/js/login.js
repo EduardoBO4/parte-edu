@@ -2,8 +2,9 @@
 // Sistema de Login e Cadastro - Remedicy
 // Integração com JSON Server
 
-const API_BASE_URL = 'http://localhost:3000';
-const API_URL = `${API_BASE_URL}/usuarios`;
+const API_URL = window.location.hostname.includes("localhost")
+  ? "http://localhost:3000/usuarios"
+  : "https://atividade-01-grupo-lembretes-para.onrender.com/usuarios";
 const LOGIN_URL = "/login.html";
 const HOME_URL = "index.html";
 
@@ -220,7 +221,7 @@ function checkCurrentUser() {
 function logoutUser() {
     sessionStorage.removeItem('usuarioCorrente');
     usuarioCorrente = {};
-    window.location.href = "/codigo/public/login.html";
+    window.location.href = "/login.html";
 }
 
 function showUserInfo(element) {
