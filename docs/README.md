@@ -309,6 +309,11 @@ As referências utilizadas no trabalho foram:
 >
 > Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
 >
+LYNCH, S. Aderência ao tratamento medicamentoso. Disponível em: https://www.msdmanuals.com/pt/casa/medicamentos/fatores-que-afetam-a-resposta-medicamentosa/ader%C3%AAncia-ao-tratamento-medicamentoso. Acesso em: 22 jun. 2025.
+
+ROCHA, Andréa Soares da; RIBEIRO, Iara Siqueira de Lima; OLIVEIRA, Renata Coelho de; et al. Dificuldades no uso de medicamentos por idosos acompanhados em uma coorte do Sul do Brasil. Revista Brasileira de Epidemiologia, v. 26, 2023. DOI: 10.1590/1980-549720230020.2. Disponível em: https://www.scielo.br/j/rbepid/a/fsM3pN6YmXXWLXhgM5MBZMh/?lang=pt. Acesso em: 22 jun. 2025.
+
+SOBRAL, Pollyanna Dutra; OLIVEIRA, Dinaldo Cavalcanti; GOMES, Eduardo Tavares; CARVALHO, Priscila de Oliveira; BRITO, Norma Maria Tenório; OLIVEIRA, Danielle Aparecida Gomes Cavalcanti de; ARAGÃO, Erlley Raquel; GODOI, Emanuelle Tenório. Razões para não adesão a fármacos em pacientes com doença arterial coronariana. Revista da Sociedade Brasileira de Clínica Médica, v. 15, n. 3, p. 166-170, 2017. Disponível em: https://www.revista.sbcm.org.br/index.php/rsbcm/article/view/288. Acesso em: 22 jun. 2025.
 > **Orientações**:
 >
 > - [Formato ABNT](https://www.normastecnicas.com/abnt/trabalhos-academicos/referencias/)
