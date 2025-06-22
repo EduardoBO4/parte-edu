@@ -206,8 +206,10 @@ function checkCurrentUser() {
     if (usuario) {
         try {
             usuarioCorrente = JSON.parse(usuario);
-            // Se já está logado, redirecionar para home
-            window.location.href = HOME_URL;
+            // Se já está logado e está na página de login, redirecionar para home
+            if (window.location.pathname.includes('login.html')) {
+                window.location.href = HOME_URL;
+            }
         } catch (error) {
             console.error('Erro ao recuperar usuário:', error);
             sessionStorage.removeItem('usuarioCorrente');
