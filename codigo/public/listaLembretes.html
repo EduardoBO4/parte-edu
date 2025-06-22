@@ -57,7 +57,7 @@
 
   <div class="main-content">
     <h1 class="page-title">Meus Remédios</h1>
-    <a href="criacaoRemedio.html" class="take-medicine-button" style="margin-bottom: 20px; display: inline-block;" onclick="localStorage.removeItem('lembreteEditando')">Criar Novo</a>
+    <a href="criacaoLembrete.html" class="take-medicine-button" style="margin-bottom: 20px; display: inline-block;" onclick="localStorage.removeItem('lembreteEditando')">Criar Novo</a>
 
     <div class="medicine-list" id="lista-remedios"></div>
 
@@ -138,7 +138,7 @@
 
       window.editar = function (index) {
         localStorage.setItem("lembreteEditando", index);
-        window.location.href = "criacaoRemedio.html";
+        window.location.href = "criacaoLembrete.html";
       }
 
       window.remover = function (index) {
