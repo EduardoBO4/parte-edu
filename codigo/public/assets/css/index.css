@@ -68,6 +68,7 @@ body {
  * 2. LAYOUT – HEADER           *
  ********************************/
 
+/* Cabeçalho */
 header {
   display: flex;
   justify-content: space-between;
@@ -77,6 +78,40 @@ header {
   flex-wrap: wrap;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   height: 120px;
+}
+
+/* Identificador de usuário */
+.user-info {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  gap: 10px;
+}
+
+.user-info i {
+  font-size: 18px;
+}
+
+.logout-link {
+  color: white;
+  text-decoration: none;
+  margin-left: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .img-logo {

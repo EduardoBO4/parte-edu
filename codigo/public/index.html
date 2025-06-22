@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="pt-br">
     <head>
         <meta charset="UTF-8" />
@@ -78,11 +78,13 @@
                 </a>
                 <h1 class="text-logo">Remedicy</h1>
             </div>
+            <div class="user-container">
+            <div id="userInfo"></div>
             <nav class="infos-mais">
-                <a class="botao-link" href="/codigo/public/login.html">Login/Inscrição</a>
                 <a class="botao-link" href="/codigo/public/about.html">Sobre nós</a>
                 <a class="botao-link" href="/codigo/public/ajuda.html">Suporte</a>
             </nav>
+        </div>
         </header>
 
         <main class="main-container">
@@ -170,75 +172,23 @@
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
         <script src="./assets/js/miniCalendario.js"></script>
         <script src="./assets/js/noticias.js"></script>
+        <script src="./assets/js/login.js"></script>
+    <script src="./assets/js/index.resumos.js"></script>
+    <script src="./assets/js/noticias.js"></script>
+    <script src="./assets/js/miniCalendario.js"></script>
 
-        <script>
-            function formatarData(dataStr) {
-                if (!dataStr) return "-";
-                const partes = dataStr.split("-");
-                return partes.length === 3 ? `${partes[2]}/${partes[1]}/${partes[0]}` : dataStr;
+    <script>
+        // Verificar se usuário está logado e mostrar info
+        document.addEventListener('DOMContentLoaded', function() {
+            const usuario = getCurrentUser();
+            if (usuario) {
+                showUserInfo('userInfo');
+            } else {
+                // Mostrar botão de login se não estiver logado
+                document.getElementById('userInfo').innerHTML = 
+                    '<a class="botao-link" href="/codigo/public/login.html">Login/Inscrição</a>';
             }
-
-            function carregarLembretes() {
-                return JSON.parse(localStorage.getItem("lembretes")) || [];
-            }
-
-        function mostrarLembretes(lembretes) {
-            const container = document.getElementById("lista-lembretes");
-            container.innerHTML = lembretes.length === 0 ? "<p>Nenhum lembrete encontrado.</p>" : "";
-
-            lembretes.forEach(l => {
-                const div = document.createElement("div");
-                div.className = "lembrete";
-                div.innerHTML = `
-                    <strong>${l.nome}</strong> <br/>
-                    <em>Descrição:</em> ${l.descricao || "-"} <br/>
-                    <em>Como tomar:</em> ${l.comoTomar || "-"} <br/>
-                    <em>Dia da semana:</em> ${l.diaSemana || "-"} <br/>
-                    <em>Data:</em> ${formatarData(l.dataCalendario)} <br/>
-                    <em>Horário:</em> ${l.horario || "-"} <br/>
-                    <em>Dias selecionados:</em> ${l.diasSelecionados || "-"}
-                `;
-                container.appendChild(div);
-            });
-}
-
-            function dataLocal(dataStr) {
-                if (!dataStr) return null;
-                const [ano, mes, dia] = dataStr.split('-').map(Number); // "2025-06-14" → [2025, 6, 14]
-                return new Date(ano, mes - 1, dia); // mês 0-based
-            }
-
-            function atualizarBotaoAtivo(botaoSelecionado) {
-                document.querySelectorAll("#filtros button").forEach(b => b.classList.remove("active"));
-                botaoSelecionado.classList.add("active");
-            }
-
-            function filtrarLembretes(tipo, botao = null) {
-                const todos = carregarLembretes();
-                const hoje = dataLocal(moment().format('YYYY-MM-DD'));
-                const amanha = new Date(hoje);
-                amanha.setDate(hoje.getDate() + 1);
-
-                const filtrados = todos.filter(l => {
-                    const dataLembrete = dataLocal(l.dataCalendario);
-                    if (!dataLembrete) return false;
-                    if (tipo === "passados") return dataLembrete < hoje;
-                    if (tipo === "hoje") return dataLembrete.getTime() === hoje.getTime();
-                    if (tipo === "amanha") return dataLembrete.getTime() === amanha.getTime();
-                    return true;
-                });
-
-                if (botao) atualizarBotaoAtivo(botao);
-                mostrarLembretes(filtrados);
-            }
-
-            document.querySelectorAll("#filtros button").forEach(botao => {
-                botao.addEventListener("click", () => {
-                    filtrarLembretes(botao.dataset.filtro, botao);
-                });
-            });
-
-            filtrarLembretes("todos");
-        </script>
-    </body>
-    </html>
+        });
+    </script>
+</body>
+</html>
