@@ -16,7 +16,7 @@
             <h1 class="text-logo">Remedicy</h1>
         </div>
         <nav class="infos-mais">
-            <div id="userInfo"></div>
+            <a class="botao-link" href="/codigo/public/login.html">Login/Inscrição</a>
             <a class="botao-link" href="/codigo/public/about.html">Sobre nós</a>
             <a class="botao-link" href="/codigo/public/ajuda.html">Suporte</a>
         </nav>
@@ -147,22 +147,6 @@
                 submitButton.disabled = false; // Reabilita o botão
                 submitButton.textContent = 'Enviar Mensagem';
             }, 2000); // Simula 2 segundos de carregamento
-        });
-    </script>
-    <script src="./assets/js/login.js"></script>
-    <script src="./assets/js/suporte.js"></script>
-
-    <script>
-        // Verificar se usuário está logado e mostrar info
-        document.addEventListener('DOMContentLoaded', function() {
-            const usuario = getCurrentUser();
-            if (usuario) {
-                showUserInfo('userInfo');
-            } else {
-                // Mostrar botão de login se não estiver logado
-                document.getElementById('userInfo').innerHTML = 
-                    '<a class="botao-link" href="/codigo/public/login.html">Login/Inscrição</a>';
-            }
         });
     </script>
 </body>

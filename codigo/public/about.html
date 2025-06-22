@@ -11,15 +11,14 @@
     <header>
         <div class="banner"><img src="./assets/images/banner_ti.png" alt=""></div>
         <div class="barra-info">
-            <div class="user-container">
-                <div id="userInfo"></div>
-                <nav class="menu">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">Sobre nós</a></li>
-                        <li><a href="ajuda.html">Suporte</a></li>
-                    </ul>
-                </nav>
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">Sobre nós</a></li>
+                </ul>
+            </nav>
+            <div class="dados-usuario">
+                <span id="userInfo"></span>
             </div>
         </div>
     </header>
@@ -27,19 +26,5 @@
         <h1>Sobre nós</h1>
         <p>Página com informações sobre o site.</p>
     </main>
-    
-    <script>
-        // Verificar se usuário está logado e mostrar info
-        document.addEventListener('DOMContentLoaded', function() {
-            const usuario = getCurrentUser();
-            if (usuario) {
-                showUserInfo('userInfo');
-            } else {
-                // Mostrar botão de login se não estiver logado
-                document.getElementById('userInfo').innerHTML = 
-                    '<a class="botao-link" href="login.html">Login/Inscrição</a>';
-            }
-        });
-    </script>
 </body>
 </html>
