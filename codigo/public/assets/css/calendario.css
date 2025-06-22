@@ -139,138 +139,141 @@ header {
   margin: 0;
 }
 
-/* Rodapé */
-.site-footer {
-  background-color: #c62828;
-  color: white;
-  padding: 20px 0;
-  font-family: Helvetica, Arial, sans-serif;
-  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: auto;
-}
-
-.footer-container {
+.text-logo {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.footer-column {
-  flex: 1;
-  min-width: 200px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.footer-column h4 {
-  color: #ffcc80;
-  font-size: 1.2em;
-  margin-bottom: 15px;
-  border-bottom: 2px solid rgba(255, 204, 128, 0.5);
-  padding-bottom: 10px;
-}
-
-.footer-column h4 i {
-  margin-right: 10px;
-}
-
-.footer-column p {
-  font-size: 0.9em;
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
-
-.footer-links {
-  list-style: none;
-  padding: 0;
+  align-items: center;
+  color: white;
+  font-size: 24px;
   margin: 0;
 }
 
+/* Rodapé */
+.site-footer {
+    background-color: #c62828;
+    color: white;
+    padding: 40px 0 20px;
+    margin-top: auto;
+    width: 100%;
+    margin: 0;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 240px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.footer-column h4 {
+    color: #ffcc80;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    border-bottom: 2px solid rgba(255, 204, 128, 0.5);
+    padding-bottom: 10px;
+}
+
+.footer-column h4 i {
+    margin-right: 10px;
+}
+
+.footer-column p {
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
 .footer-links li {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 .footer-links a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  font-size: 0.9em;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 0.9em;
 }
 
 .footer-links a:hover {
-  color: #ffcc80;
-  text-decoration: underline;
+    color: #ffcc80;
+    text-decoration: underline;
 }
 
 .footer-column .fa-solid {
-  margin-right: 8px;
-  color: #ffcc80;
-}
-
-.social-icons a {
-  color: #fff;
-  font-size: 1.5em;
-  margin-right: 15px;
-  transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-  color: #ffcc80;
+    margin-right: 8px;
+    color: #ffcc80;
 }
 
 .footer-bottom {
-  text-align: center;
-  padding: 20px;
-  border-top: 1px solid #b71c1c;
-  margin-top: 20px;
-  font-size: 0.8em;
-  background-color: #a31d1d;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #b71c1c;
+    margin-top: 20px;
+    font-size: 0.8em;
+    background-color: rgba(183, 28, 28, 0.3);
 }
 
 /* Responsividade */
-@media (max-width: 992px) {
-  .container {
-    flex-direction: column;
-    gap: 16px;
-    padding: 15px;
-  }
+@media (max-width: 768px) {
+    .calendar-container {
+        padding: 10px;
+    }
 
-  #calendar {
-    min-width: 100%;
-    width: 100%;
-  }
+    .calendar-nav button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
 
-  .filtros {
-    margin-left: 0;
-    width: 100%;
-    min-width: 100%;
-    max-height: none;
-  }
+    .calendar-grid {
+        gap: 2px;
+    }
 
-  header {
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-    padding: 16px;
-  }
+    .calendar-day {
+        height: 35px;
+        font-size: 12px;
+    }
 
-  .img-logo img {
-    height: 120px;
-    margin-top: -30px;
-  }
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding: 20px 10px;
+    }
 
-  .text-logo {
-    font-size: 20px;
-    margin-top: 4px;
-  }
+    .footer-column {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
 
-  .footer-column {
-    min-width: 100%;
-    padding: 8px;
-  }
+    .footer-column h4 {
+        font-size: 1.1rem;
+    }
+
+    .footer-column p,
+    .footer-links a {
+        font-size: 1rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
 }
 
 @media (max-width: 576px) {
