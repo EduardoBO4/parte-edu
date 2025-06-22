@@ -5,7 +5,9 @@
     "desc": "10ml",
     "ingestao": "oral",
     "dia_semana": "terça-feira",
-    "dtRemedio": "0000-00-00"
+    "dtRemedio": "0000-00-00",
+    "pessoa": "eu",
+    "nomeDependente": ""
   },
   "usuarios": [
     {

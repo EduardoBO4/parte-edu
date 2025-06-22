@@ -23,21 +23,24 @@ body {
   flex-wrap: wrap;
   gap: 24px;
   padding: 20px;
+  min-height: calc(100vh - 200px);
 }
 
 #calendar {
   flex: 3;
-  max-width: 900px;
-  margin: 0 auto;
+  min-width: 600px;
+  width: 100%;
 }
 
 .filtros {
   flex: 1;
+  min-width: 300px;
   margin-left: 30px;
   background: #f5f5f5;
   padding: 20px;
   border-radius: 10px;
   height: fit-content;
+  max-height: 500px;
 }
 
 .filtros h3 {
@@ -136,9 +139,10 @@ header {
 .site-footer {
   background-color: #c62828;
   color: white;
-  padding: 40px 0;
+  padding: 20px 0;
   font-family: Helvetica, Arial, sans-serif;
   box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: auto;
 }
 
 .footer-container {
@@ -152,8 +156,8 @@ header {
 
 .footer-column {
   flex: 1;
-  min-width: 240px;
-  padding: 20px;
+  min-width: 200px;
+  padding: 10px;
   box-sizing: border-box;
 }
 
@@ -227,11 +231,19 @@ header {
   .container {
     flex-direction: column;
     gap: 16px;
+    padding: 15px;
+  }
+
+  #calendar {
+    min-width: 100%;
+    width: 100%;
   }
 
   .filtros {
     margin-left: 0;
     width: 100%;
+    min-width: 100%;
+    max-height: none;
   }
 
   header {
@@ -249,6 +261,11 @@ header {
   .text-logo {
     font-size: 20px;
     margin-top: 4px;
+  }
+
+  .footer-column {
+    min-width: 100%;
+    padding: 8px;
   }
 }
 
@@ -274,18 +291,38 @@ header {
     padding: 8px 14px;
   }
 
+  .site-footer {
+    padding: 15px 0;
+  }
+
   .footer-column {
     min-width: 90%;
     text-align: center;
+    padding: 5px;
   }
 
-  .footer-column h4,
-  .footer-links {
-    text-align: center;
+  .footer-column h4 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .footer-column p {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+  }
+
+  .footer-links a {
+    font-size: 0.8rem;
   }
 
   .footer-container {
     flex-direction: column;
     align-items: center;
+    padding: 0 10px;
+  }
+
+  .footer-bottom {
+    padding: 10px;
+    font-size: 0.7rem;
   }
 }

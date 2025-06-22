@@ -67,18 +67,24 @@
     <div id="calendar"></div>
 
     <div class="filtros">
-      <div class="busca-remedios">
-        <h3>Buscar Remédio</h3>
-        <input type="text" id="pesquisaRemedio" placeholder="Digite o nome do remédio" style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ccc;">
-        <ul id="resultadoBusca"></ul>
-      </div>
+        <div class="busca-remedios">
+          <h3>Buscar Remédio</h3>
+          <input type="text" id="pesquisaRemedio" placeholder="Digite o nome do remédio" style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ccc;">
+          <ul id="resultadoBusca"></ul>
+        </div>
 
-      <h3>Filtrar Remédios</h3>
-      <div id="checkboxesFiltro">
-        <!-- Checkboxes serão gerados aqui -->
+        <div class="filtro-pessoa">
+          <h3>Filtrar por Pessoa</h3>
+          <div id="checkboxesPessoa">
+            <!-- Checkboxes de pessoa serão gerados aqui -->
+          </div>
+        </div>
+
+        <h3>Filtrar Remédios</h3>
+        <div id="checkboxesFiltro">
+          <!-- Checkboxes serão gerados aqui -->
+        </div>
       </div>
-    </div>
-  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -89,6 +95,24 @@
       function nomesUnicos() {
         const nomes = lembretes.map(l => l.nome);
         return [...new Set(nomes)].sort(); // retorna array ordenado sem duplicatas
+      }
+
+       // Função para extrair nomes de pessoas únicas
+      function pessoasUnicas() {
+        const pessoas = lembretes.map(l => l.pessoa);
+        return [...new Set(pessoas)].sort(); // retorna array ordenado sem duplicatas
+      }
+
+      // Gera checkboxes de filtro por pessoa dinamicamente
+      function gerarCheckboxesPessoa() {
+        const container = document.getElementById('checkboxesPessoa');
+        container.innerHTML = ''; // limpa o container
+
+        pessoasUnicas().forEach(pessoa => {
+          const label = document.createElement('label');
+          label.innerHTML = `<input type="checkbox" class="filtro-pessoa" value="${pessoa}" checked> ${pessoa}`;
+          container.appendChild(label);
+        });
       }
 
       // Gera checkboxes de filtro dinamicamente
@@ -103,25 +127,32 @@
         });
       }
 
-      // Função para transformar lembretes em eventos do FullCalendar, já filtrando por nomes e busca
-      function getEventosFiltrados(filtroNomes, buscaTexto) {
+      // Função para transformar lembretes em eventos do FullCalendar, já filtrando por nomes, pessoas e busca
+      function getEventosFiltrados(filtroNomes, filtroPessoas, buscaTexto) {
         return lembretes
-          .filter(l => filtroNomes.includes(l.nome) && l.nome.toLowerCase().includes(buscaTexto.toLowerCase()))
+          .filter(l =>
+            filtroNomes.includes(l.nome) &&
+            filtroPessoas.includes(l.pessoa) &&
+            l.nome.toLowerCase().includes(buscaTexto.toLowerCase())
+          )
           .map(lembrete => ({
             title: lembrete.nome,
             start: lembrete.dataCalendario || "2025-01-01",
             descricao: lembrete.descricao,
             comoTomar: lembrete.comoTomar,
             horario: lembrete.horario,
-            diasSelecionados: lembrete.diasSelecionados
+            diasSelecionados: lembrete.diasSelecionados,
+            pessoa: lembrete.pessoa // inclui a pessoa no evento
           }));
       }
 
       // Inicializa checkboxes e calendário
       gerarCheckboxes();
+      gerarCheckboxesPessoa();
 
       let eventosAtuais = getEventosFiltrados(
         nomesUnicos(),
+        pessoasUnicas(),
         ''
       );
 
@@ -134,6 +165,7 @@
         eventClick: function (event) {
           alert(
             `💊 Remédio: ${event.title}\n` +
+            `👤 Pessoa: ${event.pessoa}\n` +
             `📃 Descrição: ${event.descricao || '—'}\n` +
             `💡 Como tomar: ${event.comoTomar || '—'}\n` +
             `⏰ Horário: ${event.horario || '—'}\n` +
@@ -155,19 +187,20 @@
       // Atualiza eventos e lista de busca
       function atualizarFiltro() {
         const filtroNomes = Array.from(document.querySelectorAll('.filtro:checked')).map(cb => cb.value);
+        const filtroPessoas = Array.from(document.querySelectorAll('.filtro-pessoa:checked')).map(cb => cb.value);
         const buscaTexto = document.getElementById('pesquisaRemedio').value || '';
 
-        const eventosFiltrados = getEventosFiltrados(filtroNomes, buscaTexto);
+        const eventosFiltrados = getEventosFiltrados(filtroNomes, filtroPessoas, buscaTexto);
 
         $('#calendar').fullCalendar('removeEvents');
         $('#calendar').fullCalendar('addEventSource', eventosFiltrados);
         $('#calendar').fullCalendar('rerenderEvents');
 
-        atualizarResultadosBusca(buscaTexto, filtroNomes);
+        atualizarResultadosBusca(buscaTexto, filtroNomes, filtroPessoas);
       }
 
       // Atualiza lista de sugestões da busca
-      function atualizarResultadosBusca(buscaTexto, filtroNomes) {
+      function atualizarResultadosBusca(buscaTexto, filtroNomes, filtroPessoas) {
         const lista = document.getElementById('resultadoBusca');
         lista.innerHTML = '';
 
@@ -175,6 +208,7 @@
 
         const resultados = lembretes.filter(l =>
           filtroNomes.includes(l.nome) &&
+          filtroPessoas.includes(l.pessoa) &&
           l.nome.toLowerCase().includes(buscaTexto.toLowerCase())
         );
 
@@ -190,6 +224,7 @@
 
           li.innerHTML = `
             <strong>💊 ${lembrete.nome}</strong><br>
+            👤 <strong>Pessoa:</strong> ${lembrete.pessoa}<br>
             🗓 <strong>Data:</strong> ${dataFormatada} <br>
             ⏰ <strong>Horário:</strong> ${horarioFormatado}
           `;
@@ -197,6 +232,7 @@
           li.addEventListener('click', () => {
             alert(
               `💊 Remédio: ${lembrete.nome}\n` +
+              `👤 Pessoa: ${lembrete.pessoa}\n` +
               `📃 Descrição: ${lembrete.descricao || '—'}\n` +
               `💡 Como tomar: ${lembrete.comoTomar || '—'}\n` +
               `⏰ Horário: ${horarioFormatado}\n` +
@@ -210,21 +246,22 @@
 
       // Escuta eventos nos checkboxes e input de busca
       document.getElementById('checkboxesFiltro').addEventListener('change', atualizarFiltro);
+      document.getElementById('checkboxesPessoa').addEventListener('change', atualizarFiltro);
       document.getElementById('pesquisaRemedio').addEventListener('input', atualizarFiltro);
 
       // Inicializa a lista de resultados vazia
-      atualizarResultadosBusca('', nomesUnicos());
+      atualizarResultadosBusca('', nomesUnicos(), pessoasUnicas());
 
       // Função para atualizar status do usuário
       function atualizarStatusUsuario() {
         const script = document.createElement('script');
         script.src = './assets/js/login.js';
         document.head.appendChild(script);
-        
+
         script.onload = function() {
           const usuario = getCurrentUser();
           const userStatus = document.getElementById('user-status');
-          
+
           if (usuario && usuario.nome) {
             userStatus.innerHTML = `
               <div class="user-info">
