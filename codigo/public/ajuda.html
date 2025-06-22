@@ -5,7 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Suporte - Remedicy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link rel="stylesheet" href="./assets/css/ajuda.css" /> 
+    <link rel="stylesheet" href="./assets/css/ajuda.css" />
+    <style>
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        .user-info .user-name {
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: background-color 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #b71c1c;
+        }
+    </style>
 </head>
 <body>
  <header>
@@ -16,7 +47,9 @@
             <h1 class="text-logo">Remedicy</h1>
         </div>
         <nav class="infos-mais">
-            <a class="botao-link" href="/codigo/public/login.html">Login/Inscrição</a>
+            <div id="user-status">
+              <!-- Será preenchido via JavaScript -->
+            </div>
             <a class="botao-link" href="/codigo/public/about.html">Sobre nós</a>
             <a class="botao-link" href="/codigo/public/ajuda.html">Suporte</a>
         </nav>
@@ -148,6 +181,43 @@
                 submitButton.textContent = 'Enviar Mensagem';
             }, 2000); // Simula 2 segundos de carregamento
         });
+
+        // Função para atualizar status do usuário
+        function atualizarStatusUsuario() {
+            const script = document.createElement('script');
+            script.src = './assets/js/login.js';
+            document.head.appendChild(script);
+            
+            script.onload = function() {
+                const usuario = getCurrentUser();
+                const userStatus = document.getElementById('user-status');
+                
+                if (usuario && usuario.nome) {
+                    userStatus.innerHTML = `
+                        <div class="user-info">
+                            <i class="fa-solid fa-user-circle"></i>
+                            <span class="user-name">${usuario.nome}</span>
+                            <button class="logout-btn" onclick="confirmarLogout()">
+                                <i class="fa-solid fa-sign-out-alt"></i> Sair
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    userStatus.innerHTML = `
+                        <a class="botao-link" href="/codigo/public/login.html">Login/Inscrição</a>
+                    `;
+                }
+            };
+        }
+
+        function confirmarLogout() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                logoutUser();
+            }
+        }
+
+        // Executar ao carregar a página
+        atualizarStatusUsuario();
     </script>
 </body>
 </html>
