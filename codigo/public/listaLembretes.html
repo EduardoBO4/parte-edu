@@ -121,6 +121,40 @@
         localStorage.setItem("lembretesNaoTomados", JSON.stringify(naoTomados));
       }
 
+      // Função para limpar lembretes antigos (após 3 dias)
+      function limparLembretesAntigos() {
+        const agora = new Date();
+        const tresDiasAtras = new Date(agora.getTime() - (3 * 24 * 60 * 60 * 1000));
+
+        // Limpar lembretes tomados antigos
+        const tomadosAtualizados = tomados.filter(lembrete => {
+          if (lembrete.dataTomaado) {
+            const dataTomado = new Date(lembrete.dataTomaado);
+            return dataTomado > tresDiasAtras;
+          }
+          // Se não tem data de tomado, verificar pela data original
+          const dataOriginal = new Date(lembrete.dataCalendario + 'T' + lembrete.horario);
+          return dataOriginal > tresDiasAtras;
+        });
+
+        // Limpar lembretes não tomados antigos
+        const naoTomadosAtualizados = naoTomados.filter(lembrete => {
+          const dataOriginal = new Date(lembrete.dataCalendario + 'T' + lembrete.horario);
+          return dataOriginal > tresDiasAtras;
+        });
+
+        // Atualizar apenas se houve mudanças
+        if (tomadosAtualizados.length !== tomados.length) {
+          tomados = tomadosAtualizados;
+          localStorage.setItem("lembretesTomados", JSON.stringify(tomados));
+        }
+
+        if (naoTomadosAtualizados.length !== naoTomados.length) {
+          naoTomados = naoTomadosAtualizados;
+          localStorage.setItem("lembretesNaoTomados", JSON.stringify(naoTomados));
+        }
+      }
+
       function renderizarLista(lembretesFiltrados = null) {
         const listaMostrar = lembretesFiltrados || lembretes;
         listaRemedios.innerHTML = "";
@@ -203,7 +237,7 @@
 
         tituloTomados.style.display = "block";
 
-        listaMostrar.forEach((lembrete) => {
+        listaMostrar.forEach((lembrete, index) => {
           const item = document.createElement("div");
           item.className = "medicine-item taken";
 
@@ -217,6 +251,7 @@
               <div class="medicine-dosage">${lembrete.descricao || "Sem descrição"}</div>
               <div class="medicine-schedule">Tomado: ${lembrete.comoTomar || "sem instrução"} às ${lembrete.horario} - Data: ${lembrete.dataCalendario}</div>
             </div>
+            <button class="take-medicine-button" style="background-color: #555;" onclick="removerTomado(${index})">Remover</button>
           `;
 
           listaTomados.appendChild(item);
@@ -255,6 +290,7 @@
 
         if (target.dataset.acao === "tomar" && id !== undefined) {
           const lembreteTomado = lembretes.splice(id, 1)[0];
+          lembreteTomado.dataTomaado = new Date().toISOString(); // Adiciona timestamp
           tomados.push(lembreteTomado);
           localStorage.setItem("lembretes", JSON.stringify(lembretes));
           localStorage.setItem("lembretesTomados", JSON.stringify(tomados));
@@ -270,6 +306,7 @@
 
         if (target.dataset.acao === "tomar-atrasado" && index !== undefined) {
           const lembreteTomado = naoTomados.splice(index, 1)[0];
+          lembreteTomado.dataTomaado = new Date().toISOString(); // Adiciona timestamp
           tomados.push(lembreteTomado);
           localStorage.setItem("lembretesNaoTomados", JSON.stringify(naoTomados));
           localStorage.setItem("lembretesTomados", JSON.stringify(tomados));
@@ -299,8 +336,17 @@
         }
       }
 
-      // Verificar lembretes atrasados ao carregar a página
+      window.removerTomado = function (index) {
+        if (confirm("Deseja remover este lembrete tomado?")) {
+          tomados.splice(index, 1);
+          localStorage.setItem("lembretesTomados", JSON.stringify(tomados));
+          renderizarTomados();
+        }
+      }
+
+      // Verificar lembretes atrasados e limpar antigos ao carregar a página
       verificarAtrasados();
+      limparLembretesAntigos();
       
       renderizarLista();
       renderizarTomados();
@@ -308,6 +354,9 @@
 
       // Verificar lembretes atrasados a cada minuto
       setInterval(verificarAtrasados, 60000);
+
+      // Limpar lembretes antigos a cada hora
+      setInterval(limparLembretesAntigos, 3600000);
 
       // Função para atualizar status do usuário
       function atualizarStatusUsuario() {
