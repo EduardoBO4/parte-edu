@@ -218,7 +218,7 @@ function checkCurrentUser() {
 function logoutUser() {
     sessionStorage.removeItem('usuarioCorrente');
     usuarioCorrente = {};
-    window.location.href = LOGIN_URL;
+    window.location.href = "/codigo/public/login.html";
 }
 
 function showUserInfo(element) {

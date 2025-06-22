@@ -67,6 +67,37 @@
                 align-items: center;
                 gap: 10px;
             }
+
+            /* Estilos para status do usuário */
+            .user-info {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: white;
+                background: rgba(255, 255, 255, 0.2);
+                padding: 8px 15px;
+                border-radius: 20px;
+                font-size: 0.9em;
+            }
+
+            .user-info .user-name {
+                font-weight: bold;
+            }
+
+            .logout-btn {
+                background: #d32f2f;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 15px;
+                cursor: pointer;
+                font-size: 0.8em;
+                transition: background-color 0.3s;
+            }
+
+            .logout-btn:hover {
+                background: #b71c1c;
+            }
         </style>
     </head>
 
@@ -79,7 +110,9 @@
                 <h1 class="text-logo">Remedicy</h1>
             </div>
             <nav class="infos-mais">
-                <a class="botao-link" href="/codigo/public/login.html">Login/Inscrição</a>
+                <div id="user-status">
+                    <!-- Será preenchido via JavaScript -->
+                </div>
                 <a class="botao-link" href="/codigo/public/about.html">Sobre nós</a>
                 <a class="botao-link" href="/codigo/public/ajuda.html">Suporte</a>
             </nav>
@@ -168,6 +201,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
+        <script src="./assets/js/login.js"></script>
         <script src="./assets/js/miniCalendario.js"></script>
         <script src="./assets/js/noticias.js"></script>
 
@@ -239,6 +273,37 @@
             });
 
             filtrarLembretes("todos");
+
+            // Verificar status do usuário e atualizar interface
+            function atualizarStatusUsuario() {
+                const usuario = getCurrentUser();
+                const userStatus = document.getElementById('user-status');
+                
+                if (usuario && usuario.nome) {
+                    userStatus.innerHTML = `
+                        <div class="user-info">
+                            <i class="fa-solid fa-user-circle"></i>
+                            <span class="user-name">${usuario.nome}</span>
+                            <button class="logout-btn" onclick="confirmarLogout()">
+                                <i class="fa-solid fa-sign-out-alt"></i> Sair
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    userStatus.innerHTML = `
+                        <a class="botao-link" href="/codigo/public/login.html">Login/Inscrição</a>
+                    `;
+                }
+            }
+
+            function confirmarLogout() {
+                if (confirm('Tem certeza que deseja sair?')) {
+                    logoutUser();
+                }
+            }
+
+            // Executar ao carregar a página
+            atualizarStatusUsuario();
         </script>
     </body>
     </html>
