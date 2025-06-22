@@ -246,15 +246,10 @@ body {
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(45deg, #c62828, #d32f2f, #b71c1c, #c62828);
+    background: #ffffff;
     border-radius: 22px;
     z-index: -1;
-    animation: gradientShift 3s ease infinite;
-}
-
-@keyframes gradientShift {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.6; }
+    opacity: 0.3;
 }
 
 .form-group input:hover {
