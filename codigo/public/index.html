@@ -138,6 +138,15 @@
                     <button type="button" data-filtro="amanha" class="botao-link">Amanhã</button>
                 </div>
 
+                <div style="margin: 15px 0;">
+                    <label for="filtro-pessoa-index" style="font-weight: bold; margin-right: 10px;">Por pessoa:</label>
+                    <select id="filtro-pessoa-index" style="padding: 8px; border-radius: 5px; border: 1px solid #ccc;">
+                        <option value="todos">Todos</option>
+                        <option value="eu">Meus remédios</option>
+                        <option value="dependente">Dependentes</option>
+                    </select>
+                </div>
+
                 <div id="lista-lembretes"></div>
 
                 <a class="botao-link" href="/codigo/public/calendario.html">Abrir calendário</a>
@@ -223,8 +232,13 @@
             lembretes.forEach(l => {
                 const div = document.createElement("div");
                 div.className = "lembrete";
+                
+                const pessoaTexto = l.pessoa === 'eu' ? 'Para mim' : 
+                                   l.pessoa === 'dependente' ? `Para ${l.nomeDependente}` : 'Não definido';
+
                 div.innerHTML = `
                     <strong>${l.nome}</strong> <br/>
+                    <em>Pessoa:</em> <strong style="color: #007bff;">${pessoaTexto}</strong> <br/>
                     <em>Descrição:</em> ${l.descricao || "-"} <br/>
                     <em>Como tomar:</em> ${l.comoTomar || "-"} <br/>
                     <em>Dia da semana:</em> ${l.diaSemana || "-"} <br/>
@@ -252,8 +266,9 @@
                 const hoje = dataLocal(moment().format('YYYY-MM-DD'));
                 const amanha = new Date(hoje);
                 amanha.setDate(hoje.getDate() + 1);
+                const filtroPessoa = document.getElementById('filtro-pessoa-index').value;
 
-                const filtrados = todos.filter(l => {
+                let filtrados = todos.filter(l => {
                     const dataLembrete = dataLocal(l.dataCalendario);
                     if (!dataLembrete) return false;
                     if (tipo === "passados") return dataLembrete < hoje;
@@ -262,9 +277,23 @@
                     return true;
                 });
 
+                // Aplicar filtro de pessoa
+                if (filtroPessoa === 'eu') {
+                    filtrados = filtrados.filter(l => l.pessoa === 'eu');
+                } else if (filtroPessoa === 'dependente') {
+                    filtrados = filtrados.filter(l => l.pessoa === 'dependente');
+                }
+
                 if (botao) atualizarBotaoAtivo(botao);
                 mostrarLembretes(filtrados);
             }
+
+            // Event listener para filtro por pessoa
+            document.getElementById('filtro-pessoa-index').addEventListener('change', function() {
+                const botaoAtivo = document.querySelector('#filtros button.active');
+                const tipoFiltro = botaoAtivo ? botaoAtivo.dataset.filtro : 'todos';
+                filtrarLembretes(tipoFiltro);
+            });
 
             document.querySelectorAll("#filtros button").forEach(botao => {
                 botao.addEventListener("click", () => {

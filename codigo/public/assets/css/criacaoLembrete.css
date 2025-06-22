@@ -105,7 +105,10 @@ main {
   min-width: 300px;
 }
 
-.form-left input {
+.form-left input[type="text"],
+.form-left input[type="time"],
+.form-left input[type="date"],
+.form-left select {
   padding: 10px;
   border: 1px solid #e0b4b4;
   background-color: #ffeaea;
@@ -114,7 +117,8 @@ main {
   transition: border 0.2s ease;
 }
 
-.form-left input:focus {
+.form-left input:focus,
+.form-left select:focus {
   border: 1px solid #b00020;
   outline: none;
 }

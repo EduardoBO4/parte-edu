@@ -57,7 +57,18 @@
 
   <div class="main-content">
     <h1 class="page-title">Meus Remédios</h1>
-    <a href="criacaoLembrete.html" class="take-medicine-button" style="margin-bottom: 20px; display: inline-block;" onclick="localStorage.removeItem('lembreteEditando')">Criar Novo</a>
+    <div style="margin-bottom: 20px;">
+      <a href="criacaoLembrete.html" class="take-medicine-button" style="display: inline-block;" onclick="localStorage.removeItem('lembreteEditando')">Criar Novo</a>
+      
+      <div style="margin-top: 15px;">
+        <label for="filtro-pessoa" style="font-weight: bold; margin-right: 10px;">Filtrar por pessoa:</label>
+        <select id="filtro-pessoa" style="padding: 8px; border-radius: 5px; border: 1px solid #ccc; margin-right: 10px;">
+          <option value="todos">Todos</option>
+          <option value="eu">Meus remédios</option>
+          <option value="dependente">Dependentes</option>
+        </select>
+      </div>
+    </div>
 
     <div class="medicine-list" id="lista-remedios"></div>
 
@@ -74,44 +85,56 @@
       let lembretes = JSON.parse(localStorage.getItem("lembretes")) || [];
       let tomados = JSON.parse(localStorage.getItem("lembretesTomados")) || [];
 
-      function renderizarLista() {
+      function renderizarLista(lembretesFiltrados = null) {
+        const listaMostrar = lembretesFiltrados || lembretes;
         listaRemedios.innerHTML = "";
-        lembretes.forEach((lembrete, index) => {
+        
+        listaMostrar.forEach((lembrete, index) => {
+          const indexOriginal = lembretesFiltrados ? lembretes.findIndex(l => l === lembrete) : index;
           const item = document.createElement("div");
           item.className = "medicine-item";
-          item.dataset.remedioId = index;
+          item.dataset.remedioId = indexOriginal;
+
+          const pessoaTexto = lembrete.pessoa === 'eu' ? 'Para mim' : 
+                             lembrete.pessoa === 'dependente' ? `Para ${lembrete.nomeDependente}` : 'Não definido';
 
           item.innerHTML = `
             <div class="medicine-details">
               <div class="medicine-name">${lembrete.nome}</div>
+              <div class="medicine-person" style="color: #007bff; font-weight: bold; margin: 5px 0;">${pessoaTexto}</div>
               <div class="medicine-dosage">${lembrete.descricao || "Sem descrição"}</div>
               <div class="medicine-schedule">Tomar: ${lembrete.comoTomar || "sem instrução"} às ${lembrete.horario} - Data: ${lembrete.dataCalendario}</div>
             </div>
             <button class="take-medicine-button" data-acao="tomar">Tomar</button>
-            <button class="take-medicine-button" style="background-color: #888;" onclick="editar(${index})">Editar</button>
-            <button class="take-medicine-button" style="background-color: #555;" onclick="remover(${index})">Remover</button>
+            <button class="take-medicine-button" style="background-color: #888;" onclick="editar(${indexOriginal})">Editar</button>
+            <button class="take-medicine-button" style="background-color: #555;" onclick="remover(${indexOriginal})">Remover</button>
           `;
 
           listaRemedios.appendChild(item);
         });
       }
 
-      function renderizarTomados() {
+      function renderizarTomados(tomadosFiltrados = null) {
+        const listaMostrar = tomadosFiltrados || tomados;
         listaTomados.innerHTML = "";
-        if (tomados.length === 0) {
+        if (listaMostrar.length === 0) {
           tituloTomados.style.display = "none";
           return;
         }
 
         tituloTomados.style.display = "block";
 
-        tomados.forEach((lembrete) => {
+        listaMostrar.forEach((lembrete) => {
           const item = document.createElement("div");
           item.className = "medicine-item taken";
+
+          const pessoaTexto = lembrete.pessoa === 'eu' ? 'Para mim' : 
+                             lembrete.pessoa === 'dependente' ? `Para ${lembrete.nomeDependente}` : 'Não definido';
 
           item.innerHTML = `
             <div class="medicine-details">
               <div class="medicine-name">${lembrete.nome}</div>
+              <div class="medicine-person" style="color: #007bff; font-weight: bold; margin: 5px 0;">${pessoaTexto}</div>
               <div class="medicine-dosage">${lembrete.descricao || "Sem descrição"}</div>
               <div class="medicine-schedule">Tomado: ${lembrete.comoTomar || "sem instrução"} às ${lembrete.horario} - Data: ${lembrete.dataCalendario}</div>
             </div>
@@ -120,6 +143,27 @@
           listaTomados.appendChild(item);
         });
       }
+
+      // Função para filtrar por pessoa
+      function filtrarPorPessoa() {
+        const filtro = document.getElementById('filtro-pessoa').value;
+        let lembretesFiltrados = lembretes;
+        let tomadosFiltrados = tomados;
+
+        if (filtro === 'eu') {
+          lembretesFiltrados = lembretes.filter(l => l.pessoa === 'eu');
+          tomadosFiltrados = tomados.filter(l => l.pessoa === 'eu');
+        } else if (filtro === 'dependente') {
+          lembretesFiltrados = lembretes.filter(l => l.pessoa === 'dependente');
+          tomadosFiltrados = tomados.filter(l => l.pessoa === 'dependente');
+        }
+
+        renderizarLista(lembretesFiltrados);
+        renderizarTomados(tomadosFiltrados);
+      }
+
+      // Event listener para o filtro
+      document.getElementById('filtro-pessoa').addEventListener('change', filtrarPorPessoa);
 
       listaRemedios.addEventListener("click", function (event) {
         const target = event.target;

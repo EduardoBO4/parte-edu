@@ -29,6 +29,12 @@
         <input type="text" name="nome_remedio" placeholder="nome do remédio*" required>
         <input type="text" name="descricao" placeholder="descrição">
         <input type="text" name="como_tomar" placeholder="Como tomar">
+        <select name="pessoa" required>
+          <option value="">Para quem é o remédio?*</option>
+          <option value="eu">Para mim</option>
+          <option value="dependente">Para meu dependente</option>
+        </select>
+        <input type="text" name="nome_dependente" placeholder="Nome do dependente" style="display: none;">
         <input type="time" name="horario" placeholder="Horário*" required>
         <input type="date" id="data_calendario" placeholder="Escolha a data">
       </div>
@@ -64,6 +70,20 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const lembreteEditando = localStorage.getItem("lembreteEditando");
+    const selectPessoa = document.querySelector('[name="pessoa"]');
+    const inputDependente = document.querySelector('[name="nome_dependente"]');
+
+    // Mostrar/ocultar campo do dependente
+    selectPessoa.addEventListener('change', function() {
+      if (this.value === 'dependente') {
+        inputDependente.style.display = 'block';
+        inputDependente.required = true;
+      } else {
+        inputDependente.style.display = 'none';
+        inputDependente.required = false;
+        inputDependente.value = '';
+      }
+    });
 
     if (lembreteEditando !== null) {
       const lembretes = JSON.parse(localStorage.getItem("lembretes")) || [];
@@ -72,6 +92,12 @@
         document.querySelector('[name="nome_remedio"]').value = lembrete.nome;
         document.querySelector('[name="descricao"]').value = lembrete.descricao;
         document.querySelector('[name="como_tomar"]').value = lembrete.comoTomar;
+        document.querySelector('[name="pessoa"]').value = lembrete.pessoa || "eu";
+        if (lembrete.pessoa === 'dependente' && lembrete.nomeDependente) {
+          inputDependente.style.display = 'block';
+          inputDependente.required = true;
+          inputDependente.value = lembrete.nomeDependente;
+        }
         document.querySelector('[name="horario"]').value = lembrete.horario;
         document.getElementById('data_calendario').value = lembrete.dataCalendario || "";
       }
@@ -80,6 +106,7 @@
       document.querySelector('[name="nome_remedio"]').value = "";
       document.querySelector('[name="descricao"]').value = "";
       document.querySelector('[name="como_tomar"]').value = "";
+      document.querySelector('[name="pessoa"]').value = "";
       document.querySelector('[name="horario"]').value = "";
       document.getElementById('data_calendario').value = "";
     }
@@ -91,11 +118,18 @@
     const nome = document.querySelector('[name="nome_remedio"]').value.trim();
     const descricao = document.querySelector('[name="descricao"]').value.trim();
     const comoTomar = document.querySelector('[name="como_tomar"]').value.trim();
+    const pessoa = document.querySelector('[name="pessoa"]').value;
+    const nomeDependente = document.querySelector('[name="nome_dependente"]').value.trim();
     const horario = document.querySelector('[name="horario"]').value.trim();
     const dataCalendario = document.getElementById('data_calendario').value;
 
-    if (!nome || !horario || !dataCalendario) {
-      alert("Preencha os campos obrigatórios: nome do remédio, horário e data.");
+    if (!nome || !horario || !dataCalendario || !pessoa) {
+      alert("Preencha os campos obrigatórios: nome do remédio, pessoa, horário e data.");
+      return;
+    }
+
+    if (pessoa === 'dependente' && !nomeDependente) {
+      alert("Preencha o nome do dependente.");
       return;
     }
 
@@ -103,6 +137,8 @@
       nome,
       descricao,
       comoTomar,
+      pessoa,
+      nomeDependente: pessoa === 'dependente' ? nomeDependente : '',
       horario,
       diasSelecionados: "",
       dataCalendario
