@@ -72,6 +72,9 @@
 
     <div class="medicine-list" id="lista-remedios"></div>
 
+    <h2 id="titulo-nao-tomados" style="display: none; margin-top: 40px; color: #d32f2f;">Não Tomados (Atrasados)</h2>
+    <div class="medicine-list" id="lista-nao-tomados"></div>
+
     <h2 id="titulo-tomados" style="display: none; margin-top: 40px;">Já Tomados</h2>
     <div class="medicine-list" id="lista-tomados"></div>
   </div>
@@ -81,9 +84,42 @@
       const listaRemedios = document.getElementById("lista-remedios");
       const listaTomados = document.getElementById("lista-tomados");
       const tituloTomados = document.getElementById("titulo-tomados");
+      const listaNaoTomados = document.getElementById("lista-nao-tomados");
+      const tituloNaoTomados = document.getElementById("titulo-nao-tomados");
 
       let lembretes = JSON.parse(localStorage.getItem("lembretes")) || [];
       let tomados = JSON.parse(localStorage.getItem("lembretesTomados")) || [];
+      let naoTomados = JSON.parse(localStorage.getItem("lembretesNaoTomados")) || [];
+
+      // Função para verificar se um lembrete está atrasado
+      function isAtrasado(lembrete) {
+        const hoje = new Date();
+        const dataLembrete = new Date(lembrete.dataCalendario + 'T' + lembrete.horario);
+        return dataLembrete < hoje;
+      }
+
+      // Função para mover lembretes atrasados para "não tomados"
+      function verificarAtrasados() {
+        const agora = new Date();
+        const lembretesAtualizados = [];
+        
+        lembretes.forEach((lembrete, index) => {
+          const dataHorarioLembrete = new Date(lembrete.dataCalendario + 'T' + lembrete.horario);
+          
+          if (dataHorarioLembrete < agora) {
+            // Lembrete está atrasado, mover para não tomados
+            const lembreteAtrasado = { ...lembrete, statusAtrasado: true };
+            naoTomados.push(lembreteAtrasado);
+          } else {
+            // Lembrete ainda está no horário
+            lembretesAtualizados.push(lembrete);
+          }
+        });
+        
+        lembretes = lembretesAtualizados;
+        localStorage.setItem("lembretes", JSON.stringify(lembretes));
+        localStorage.setItem("lembretesNaoTomados", JSON.stringify(naoTomados));
+      }
 
       function renderizarLista(lembretesFiltrados = null) {
         const listaMostrar = lembretesFiltrados || lembretes;
@@ -98,19 +134,62 @@
           const pessoaTexto = lembrete.pessoa === 'eu' ? 'Para mim' : 
                              lembrete.pessoa === 'dependente' ? `Para ${lembrete.nomeDependente}` : 'Não definido';
 
+          // Verificar se está atrasado
+          const estaAtrasado = isAtrasado(lembrete);
+          const classeAtraso = estaAtrasado ? ' atrasado' : '';
+          const botaoTexto = estaAtrasado ? '⚠️ ATRASADO - Tomar Agora' : 'Tomar';
+          const corBotao = estaAtrasado ? 'background-color: #ff5722; animation: pulse 2s infinite;' : '';
+
+          item.className += classeAtraso;
+
           item.innerHTML = `
             <div class="medicine-details">
               <div class="medicine-name">${lembrete.nome}</div>
               <div class="medicine-person" style="color: #007bff; font-weight: bold; margin: 5px 0;">${pessoaTexto}</div>
               <div class="medicine-dosage">${lembrete.descricao || "Sem descrição"}</div>
               <div class="medicine-schedule">Tomar: ${lembrete.comoTomar || "sem instrução"} às ${lembrete.horario} - Data: ${lembrete.dataCalendario}</div>
+              ${estaAtrasado ? '<div class="alert-message">⚠️ Este remédio já passou do horário!</div>' : ''}
             </div>
-            <button class="take-medicine-button" data-acao="tomar">Tomar</button>
+            <button class="take-medicine-button" data-acao="tomar" style="${corBotao}">${botaoTexto}</button>
             <button class="take-medicine-button" style="background-color: #888;" onclick="editar(${indexOriginal})">Editar</button>
             <button class="take-medicine-button" style="background-color: #555;" onclick="remover(${indexOriginal})">Remover</button>
           `;
 
           listaRemedios.appendChild(item);
+        });
+      }
+
+      function renderizarNaoTomados(naoTomadosFiltrados = null) {
+        const listaMostrar = naoTomadosFiltrados || naoTomados;
+        listaNaoTomados.innerHTML = "";
+        
+        if (listaMostrar.length === 0) {
+          tituloNaoTomados.style.display = "none";
+          return;
+        }
+
+        tituloNaoTomados.style.display = "block";
+
+        listaMostrar.forEach((lembrete, index) => {
+          const item = document.createElement("div");
+          item.className = "medicine-item not-taken";
+
+          const pessoaTexto = lembrete.pessoa === 'eu' ? 'Para mim' : 
+                             lembrete.pessoa === 'dependente' ? `Para ${lembrete.nomeDependente}` : 'Não definido';
+
+          item.innerHTML = `
+            <div class="medicine-details">
+              <div class="medicine-name">${lembrete.nome}</div>
+              <div class="medicine-person" style="color: #007bff; font-weight: bold; margin: 5px 0;">${pessoaTexto}</div>
+              <div class="medicine-dosage">${lembrete.descricao || "Sem descrição"}</div>
+              <div class="medicine-schedule">NÃO TOMADO: ${lembrete.comoTomar || "sem instrução"} às ${lembrete.horario} - Data: ${lembrete.dataCalendario}</div>
+              <div class="alert-message">❌ Este remédio não foi tomado no horário correto!</div>
+            </div>
+            <button class="take-medicine-button" style="background-color: #ff5722;" data-acao="tomar-atrasado" data-index="${index}">Tomar Mesmo Assim</button>
+            <button class="take-medicine-button" style="background-color: #555;" onclick="removerNaoTomado(${index})">Remover</button>
+          `;
+
+          listaNaoTomados.appendChild(item);
         });
       }
 
@@ -149,17 +228,21 @@
         const filtro = document.getElementById('filtro-pessoa').value;
         let lembretesFiltrados = lembretes;
         let tomadosFiltrados = tomados;
+        let naoTomadosFiltrados = naoTomados;
 
         if (filtro === 'eu') {
           lembretesFiltrados = lembretes.filter(l => l.pessoa === 'eu');
           tomadosFiltrados = tomados.filter(l => l.pessoa === 'eu');
+          naoTomadosFiltrados = naoTomados.filter(l => l.pessoa === 'eu');
         } else if (filtro === 'dependente') {
           lembretesFiltrados = lembretes.filter(l => l.pessoa === 'dependente');
           tomadosFiltrados = tomados.filter(l => l.pessoa === 'dependente');
+          naoTomadosFiltrados = naoTomados.filter(l => l.pessoa === 'dependente');
         }
 
         renderizarLista(lembretesFiltrados);
         renderizarTomados(tomadosFiltrados);
+        renderizarNaoTomados(naoTomadosFiltrados);
       }
 
       // Event listener para o filtro
@@ -177,6 +260,21 @@
           localStorage.setItem("lembretesTomados", JSON.stringify(tomados));
           renderizarLista();
           renderizarTomados();
+          renderizarNaoTomados();
+        }
+      });
+
+      listaNaoTomados.addEventListener("click", function (event) {
+        const target = event.target;
+        const index = target.dataset.index;
+
+        if (target.dataset.acao === "tomar-atrasado" && index !== undefined) {
+          const lembreteTomado = naoTomados.splice(index, 1)[0];
+          tomados.push(lembreteTomado);
+          localStorage.setItem("lembretesNaoTomados", JSON.stringify(naoTomados));
+          localStorage.setItem("lembretesTomados", JSON.stringify(tomados));
+          renderizarNaoTomados();
+          renderizarTomados();
         }
       });
 
@@ -193,8 +291,23 @@
         }
       }
 
+      window.removerNaoTomado = function (index) {
+        if (confirm("Deseja remover este lembrete não tomado?")) {
+          naoTomados.splice(index, 1);
+          localStorage.setItem("lembretesNaoTomados", JSON.stringify(naoTomados));
+          renderizarNaoTomados();
+        }
+      }
+
+      // Verificar lembretes atrasados ao carregar a página
+      verificarAtrasados();
+      
       renderizarLista();
       renderizarTomados();
+      renderizarNaoTomados();
+
+      // Verificar lembretes atrasados a cada minuto
+      setInterval(verificarAtrasados, 60000);
 
       // Função para atualizar status do usuário
       function atualizarStatusUsuario() {
