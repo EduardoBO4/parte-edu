@@ -223,9 +223,6 @@ Permite a inclusão, leitura, alteração e exclusão de lembretes para o sistem
 
 ![alt text]({F4A7230C-416D-4D88-B552-77803C5856A0}.png)
 
-
-
-
 (1) titulos e descrição da funcionalidade; (2) Estrutura de dados associada; (3) o detalhe sobre as instruções de acesso e uso.
 
 1 - 1) Index
@@ -512,43 +509,46 @@ Descrição das estruturas de dados utilizadas na solução com exemplos no form
           proximoDia: Lembretes marcados para o dia seguinte.
 
 
-## Módulos e APIs (PRECISAMO FAZER)
+## Módulos e APIs 
 
-Esta seção apresenta os módulos e APIs utilizados na solução
+Esta seção apresenta os módulos, bibliotecas e APIs utilizados no desenvolvimento da solução.
 
-**Images**:
+Bibliotecas e Frameworks:
+jQuery - Biblioteca JavaScript para manipulação do DOM e eventos.
+[https://jquery.com/](https://jquery.com/)
+API de Calendário - Disponibilizada pelo professores de diw
+Bootstrap (CSS Reset) - Utilizado para facilitar estilos em alguns componentes (se estiver usando em outras partes).
+[https://getbootstrap.com/](https://getbootstrap.com/)
+ Api de Notícias  - Utilizado para mostrar notícias relacionadas a saúde
+[https://newsapi.org/]
+Biblioteca: "All articles mentioning Apple from yesterday, sorted by popular publishers first"
 
-* Unsplash - [https://unsplash.com/](https://unsplash.com/) ⚠️ EXEMPLO ⚠️
+APIs e Fontes de Dados:
+Armazenamento local (localStorage) - Os lembretes são armazenados e recuperados diretamente do navegador do usuário, sem uso de uma API externa.
 
-**Fonts:**
+Imagens e Mídia:
+Imagens locais - Logotipo e demais imagens usadas são hospedadas localmente na pasta /img.
 
-* Icons Font Face - [https://fontawesome.com/](https://fontawesome.com/) ⚠️ EXEMPLO ⚠️
 
-**Scripts:**
-
-* jQuery - [http://www.jquery.com/](http://www.jquery.com/) ⚠️ EXEMPLO ⚠️
-* Bootstrap 4 - [http://getbootstrap.com/](http://getbootstrap.com/) ⚠️ EXEMPLO ⚠️
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente os módulos e APIs utilizados no desenvolvimento da solução. Inclua itens como: (1) Frameworks, bibliotecas, módulos, etc. utilizados no desenvolvimento da solução; (2) APIs utilizadas para acesso a dados, serviços, etc.
-
-# Referências (PRECISAMOS FAZER)
-
-As referências utilizadas no trabalho foram:
-
-* SOBRENOME, Nome do autor. Título da obra. 8. ed. Cidade: Editora, 2000. 287 p ⚠️ EXEMPLO ⚠️
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
+# Referências 
 >
 LYNCH, S. Aderência ao tratamento medicamentoso. Disponível em: https://www.msdmanuals.com/pt/casa/medicamentos/fatores-que-afetam-a-resposta-medicamentosa/ader%C3%AAncia-ao-tratamento-medicamentoso. Acesso em: 22 jun. 2025.
 
 ROCHA, Andréa Soares da; RIBEIRO, Iara Siqueira de Lima; OLIVEIRA, Renata Coelho de; et al. Dificuldades no uso de medicamentos por idosos acompanhados em uma coorte do Sul do Brasil. Revista Brasileira de Epidemiologia, v. 26, 2023. DOI: 10.1590/1980-549720230020.2. Disponível em: https://www.scielo.br/j/rbepid/a/fsM3pN6YmXXWLXhgM5MBZMh/?lang=pt. Acesso em: 22 jun. 2025.
 
 SOBRAL, Pollyanna Dutra; OLIVEIRA, Dinaldo Cavalcanti; GOMES, Eduardo Tavares; CARVALHO, Priscila de Oliveira; BRITO, Norma Maria Tenório; OLIVEIRA, Danielle Aparecida Gomes Cavalcanti de; ARAGÃO, Erlley Raquel; GODOI, Emanuelle Tenório. Razões para não adesão a fármacos em pacientes com doença arterial coronariana. Revista da Sociedade Brasileira de Clínica Médica, v. 15, n. 3, p. 166-170, 2017. Disponível em: https://www.revista.sbcm.org.br/index.php/rsbcm/article/view/288. Acesso em: 22 jun. 2025.
-> **Orientações**:
->
-> - [Formato ABNT](https://www.normastecnicas.com/abnt/trabalhos-academicos/referencias/)
-> - [Referências Bibliográficas da ABNT](https://comunidade.rockcontent.com/referencia-bibliografica-abnt/)
+
+LEITE, S. N.; VASCONCELLOS, M. P. C. A adesão à terapêutica medicamentosa: elementos para a discussão de conceitos e pressupostos adotados. Ciência & Saúde Coletiva, v. 8, n. 3, p. 775-782, 2003.
+Disponível em: https://www.scielo.br/j/csc/a/ynpCtZ8FqC9r5PQ3PvYPgsc/?lang=pt. Acesso em: 22 jun. 2025.
+
+CARVALHO, D. R.; BORGES, A. P.; SOARES, D. A. R.; et al. Aderência ao tratamento medicamentoso em idosos hipertensos. Revista de Saúde Pública, v. 44, n. 3, p. 620-628, 2010.
+Disponível em: https://www.scielo.br/j/rsp/a/BhHnHcHQHRtYGHWzZMXhNJM/?lang=pt. Acesso em: 22 jun. 2025.
+
+MORAES, E. N.; et al. Fatores associados à não adesão ao tratamento medicamentoso em idosos. Revista Brasileira de Geriatria e Gerontologia, v. 15, n. 3, p. 485-494, 2012.
+Disponível em: https://www.scielo.br/j/rbgg/a/Q4VJnXTjNy7zcrDDfbjFNHF/?lang=pt. Acesso em: 22 jun. 2025.
+
+GOMES, M. A.; COSTA, M. A.; MACHADO, J. C. Fatores que influenciam a adesão ao tratamento medicamentoso em pacientes crônicos. Revista de Enfermagem UFPE on line, v. 7, n. 9, p. 5944-5951, 2013.
+Disponível em: https://periodicos.ufpe.br/revistas/revistaenfermagem/article/view/11840. Acesso em: 22 jun. 2025.
+
+MORAES, R. O.; et al. Barreiras e facilitadores para adesão ao tratamento medicamentoso em hipertensos e diabéticos: estudo em unidade de saúde da família. Revista da Escola de Enfermagem da USP, v. 48, n. 5, p. 839-845, 2014.
+Disponível em: https://www.scielo.br/j/reeusp/a/YX9fNn9dBg3cYPK3vX3jPYF/?lang=pt. Acesso em: 22 jun. 2025.
